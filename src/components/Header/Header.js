@@ -7,8 +7,6 @@ import { Signup } from 'components/Singup/Singup';
 import { NavLink } from 'react-router-dom';
 import { auth } from 'api/firebase/firebase';
 
-import defaultAvatar from '../../images/default/default-avatar.png';
-
 export const Header = ({ openModal, closeModal }) => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
@@ -51,7 +49,10 @@ export const Header = ({ openModal, closeModal }) => {
           {currentUser ? (
             <>
               <img
-                src={currentUser.photoURL || defaultAvatar}
+                src={
+                  currentUser.photoURL ||
+                  `${process.env.PUBLIC_URL}/images/default/default-avatar.png`
+                }
                 alt="User Avatar"
                 width="40"
                 height="40"
