@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from 'api/firebase/firebase';
 
 export const Signup = ({ onClose }) => {
@@ -12,19 +12,21 @@ export const Signup = ({ onClose }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-
-    await createUserWithEmailAndPassword(auth, email, password, name)
-      .then(userCredential => {
-        const user = userCredential.user;
-        console.log(user);
-        navigate('/psychologists');
-        onClose();
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(user, { displayName: name });
+      console.log(user);
+      navigate('/psychologists');
+      onClose();
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    }
   };
 
   return (
@@ -34,12 +36,12 @@ export const Signup = ({ onClose }) => {
         Thank you for your interest in our platform! In order to register, we
         need some information. Please provide us with the following information.
       </p>
-      <form>
+      <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="user-name">Name</label>
           <input
+            id="user-name"
             type="text"
-            label="User name"
             value={name}
             onChange={e => setName(e.target.value)}
             required
@@ -50,8 +52,8 @@ export const Signup = ({ onClose }) => {
         <div>
           <label htmlFor="email-address">Email address</label>
           <input
+            id="email-address"
             type="email"
-            label="Email address"
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
@@ -62,8 +64,8 @@ export const Signup = ({ onClose }) => {
         <div>
           <label htmlFor="password">Password</label>
           <input
+            id="password"
             type="password"
-            label="Create password"
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
@@ -71,9 +73,7 @@ export const Signup = ({ onClose }) => {
           />
         </div>
 
-        <button type="submit" onClick={onSubmit}>
-          Sign Up
-        </button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
