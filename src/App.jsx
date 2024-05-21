@@ -1,9 +1,11 @@
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
-import Favorites from 'pages/Favorites';
-import Home from 'pages/Home';
-import NotFoundPage from 'pages/NotFoundPage';
-import Psychologists from 'pages/Psychologists';
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+const Home = lazy(() => import('./pages/Home'));
+const Psychologists = lazy(() => import('./pages/Psychologists'));
+const Favorites = lazy(() => import('./pages/Favorites'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export const App = () => {
   return (
