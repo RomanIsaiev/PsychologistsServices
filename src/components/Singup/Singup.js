@@ -1,80 +1,117 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from 'api/firebase/firebase';
+import {
+  EyeButton,
+  EyeIcon,
+  Input,
+  ModalButton,
+  ModalDesc,
+  ModalForm,
+  ModalTitle,
+  PasswordBox,
+} from './Singup.styled';
+
+const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
+
+const schema = yup.object().shape({
+  name: yup
+    .string()
+    .required('Name is required')
+    .min(3, 'must be at least 3 characters long'),
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup.string().required('Password is required'),
+});
 
 export const Signup = ({ onClose }) => {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = async e => {
-    e.preventDefault();
+  const onSubmit = async data => {
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
-        email,
-        password
+        data.email,
+        data.password
       );
-      await updateProfile(user, { displayName: name });
-      console.log(user);
+      await updateProfile(user, { displayName: data.name });
       navigate('/psychologists');
       onClose();
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      console.log(error);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
     <div>
-      <p>Registration</p>
-      <p>
+      <ModalTitle>Registration</ModalTitle>
+      <ModalDesc>
         Thank you for your interest in our platform! In order to register, we
         need some information. Please provide us with the following information.
-      </p>
-      <form onSubmit={onSubmit}>
+      </ModalDesc>
+      <ModalForm onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="user-name">Name</label>
-          <input
+          <Input
             id="user-name"
             type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            required
+            {...register('name')}
             placeholder="Name"
           />
+          {errors.name && <p>{errors.name.message}</p>}
         </div>
-
         <div>
-          <label htmlFor="email-address">Email address</label>
-          <input
+          <Input
             id="email-address"
             type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-            placeholder="Email address"
+            {...register('email')}
+            placeholder="Email"
           />
+          {errors.email && <p>{errors.email.message}</p>}
         </div>
-
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
+        <PasswordBox>
+          <Input
             id="password"
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
+            type={showPassword ? 'text' : 'password'}
+            {...register('password')}
             placeholder="Password"
           />
-        </div>
-
-        <button type="submit">Sign Up</button>
-      </form>
+          <EyeButton type="button" onClick={togglePasswordVisibility}>
+            {showPassword ? (
+              <EyeIcon
+                src={`${IMAGE_BASE_URL}/svg/eye-on.svg`}
+                alt="hide password"
+                width="20"
+                height="20"
+              />
+            ) : (
+              <EyeIcon
+                src={`${IMAGE_BASE_URL}/svg/eye-off.svg`}
+                alt="show password"
+                width="20"
+                height="20"
+              />
+            )}
+          </EyeButton>
+          {errors.password && <p>{errors.password.message}</p>}
+        </PasswordBox>
+        <ModalButton type="submit">Sign Up</ModalButton>
+      </ModalForm>
     </div>
   );
 };

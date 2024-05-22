@@ -1,16 +1,42 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from 'api/firebase/firebase';
+import {
+  EyeButton,
+  EyeIcon,
+  Input,
+  ModalButton,
+  ModalDesc,
+  ModalForm,
+  ModalTitle,
+  PasswordBox,
+} from 'components/Singup/Singup.styled';
+
+const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
+
+const schema = yup.object().shape({
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup.string().required('Password is required'),
+});
 
 export const Login = ({ onClose }) => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const onLogin = e => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit = data => {
+    signInWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         const user = userCredential.user;
         navigate('/psychologists');
@@ -24,42 +50,55 @@ export const Login = ({ onClose }) => {
       });
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div>
-      <p>Login</p>
-      <p>
+      <ModalTitle>Login</ModalTitle>
+      <ModalDesc>
         Welcome back! Please enter your credentials to access your account and
         continue your search for a psychologist.
-      </p>
-      <form>
+      </ModalDesc>
+      <ModalForm onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="email-address">Email address</label>
-          <input
+          <Input
             id="email-address"
-            name="email"
+            {...register('email')}
             type="email"
-            required
-            placeholder="Email address"
-            onChange={e => setEmail(e.target.value)}
+            placeholder="Email"
           />
+          {errors.email && <p>{errors.email.message}</p>}
         </div>
-
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
+        <PasswordBox>
+          <Input
             id="password"
-            name="password"
-            type="password"
-            required
+            {...register('password')}
+            type={showPassword ? 'text' : 'password'}
             placeholder="Password"
-            onChange={e => setPassword(e.target.value)}
           />
-        </div>
-
-        <div>
-          <button onClick={onLogin}>Log in</button>
-        </div>
-      </form>
+          <EyeButton type="button" onClick={togglePasswordVisibility}>
+            {showPassword ? (
+              <EyeIcon
+                src={`${IMAGE_BASE_URL}/svg/eye-on.svg`}
+                alt="hide password"
+                width="20"
+                height="20"
+              />
+            ) : (
+              <EyeIcon
+                src={`${IMAGE_BASE_URL}/svg/eye-off.svg`}
+                alt="show password"
+                width="20"
+                height="20"
+              />
+            )}
+          </EyeButton>
+          {errors.password && <p>{errors.password.message}</p>}
+        </PasswordBox>
+        <ModalButton type="submit">Log in</ModalButton>
+      </ModalForm>
     </div>
   );
 };

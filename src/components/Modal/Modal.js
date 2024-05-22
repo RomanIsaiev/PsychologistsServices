@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { CloseButton, ModalContainer, ModalOverlay } from './Modal.styled';
+const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
 export const Modal = ({ isOpen, onClose, children }) => {
   useEffect(() => {
@@ -23,7 +24,14 @@ export const Modal = ({ isOpen, onClose, children }) => {
   return (
     <ModalOverlay onClick={onClose}>
       <ModalContainer onClick={e => e.stopPropagation()}>
-        <CloseButton onClick={onClose}>&times;</CloseButton>
+        <CloseButton onClick={onClose}>
+          <img
+            src={`${IMAGE_BASE_URL}/svg/close-modal.svg`}
+            alt="close"
+            width="32"
+            height="32"
+          />
+        </CloseButton>
         {children}
       </ModalContainer>
     </ModalOverlay>
