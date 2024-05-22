@@ -17,7 +17,7 @@ export const SharedLayout = () => {
   };
 
   return (
-    <div>
+    <>
       <Header openModal={openModal} closeModal={closeModal} />
       <main>
         <Suspense fallback={<div>Loading...</div>}>
@@ -27,6 +27,6 @@ export const SharedLayout = () => {
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         {modalContent}
       </Modal>
-    </div>
+    </>
   );
 };

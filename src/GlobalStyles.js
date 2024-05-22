@@ -71,8 +71,8 @@ body{
     }
     
      .container {
-        width: ${theme.breakpoint.xl};
+        max-width: ${theme.breakpoint.xl};
+        width: 100%;
         padding: 0 128px;
         margin: 0 auto;
-        
     }`;

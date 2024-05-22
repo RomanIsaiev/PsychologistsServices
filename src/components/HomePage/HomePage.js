@@ -1,51 +1,73 @@
-import { NavLink } from 'react-router-dom';
+import {
+  ExpBlock,
+  ExpContainer,
+  ExpIcon,
+  ExpInfoBox,
+  ExpNumber,
+  ExpText,
+  HomeDesc,
+  HomeFlex,
+  HomeTitle,
+  PeopleIcon,
+  PeopleIconBox,
+  QuestionIcon,
+  QuestionIconBox,
+  SectionHome,
+  StartButton,
+} from './HomePage.styled';
 const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
 export const HomePage = () => {
   return (
-    <section>
+    <SectionHome>
       <div className="container">
-        <div>
+        <HomeFlex>
           <div>
-            <h1>
+            <HomeTitle>
               The road to the <span>depths</span> of the human soul
-            </h1>
-            <p>
+            </HomeTitle>
+            <HomeDesc>
               We help you to reveal your potential, overcome challenges and find
               a guide in your own life with the help of our experienced
               psychologists.
-            </p>
-            <NavLink>
+            </HomeDesc>
+            <StartButton to="/psychologists">
               Get started
               <img src={`${IMAGE_BASE_URL}/svg/buton-arrow.svg`} alt="arrow" />
-            </NavLink>
+            </StartButton>
           </div>
-          <div>
-            <div>
-              <div>
+          <ExpContainer>
+            <ExpBlock>
+              <ExpIcon>
                 <img
                   src={`${IMAGE_BASE_URL}/svg/check-mark-orange.svg`}
                   alt="check-mark"
+                  width="30"
+                  height="30"
                 />
-              </div>
-              <div>
-                <p>Experienced psychologists</p>
-                <span>15,000</span>
-              </div>
-            </div>
+              </ExpIcon>
+              <ExpInfoBox>
+                <ExpText>Experienced psychologists</ExpText>
+                <ExpNumber>15,000</ExpNumber>
+              </ExpInfoBox>
+            </ExpBlock>
             <div>
-              <div>
-                <img
+              <PeopleIconBox>
+                <PeopleIcon
                   src={`${IMAGE_BASE_URL}/svg/people.svg`}
                   alt="people icon"
+                  width="20"
+                  height="20"
                 />
-              </div>
-              <div>
-                <img
+              </PeopleIconBox>
+              <QuestionIconBox>
+                <QuestionIcon
                   src={`${IMAGE_BASE_URL}/svg/question-sign.svg`}
                   alt="question sign icon"
+                  width="10"
+                  height="17"
                 />
-              </div>
+              </QuestionIconBox>
               <picture>
                 <source
                   srcSet={`${IMAGE_BASE_URL}/homepage/woman-desktop-1x.jpg 1x,
@@ -60,9 +82,9 @@ export const HomePage = () => {
                 />
               </picture>
             </div>
-          </div>
-        </div>
+          </ExpContainer>
+        </HomeFlex>
       </div>
-    </section>
+    </SectionHome>
   );
 };

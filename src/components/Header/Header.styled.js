@@ -20,7 +20,7 @@ export const HeaderStyled = styled.header`
 export const NavBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 226px;
+  justify-content: space-between;
 `;
 
 export const ButtonsBox = styled.div`

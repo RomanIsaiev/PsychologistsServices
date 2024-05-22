@@ -8,6 +8,7 @@ export const Nav = styled.nav`
     padding: 0;
     margin: 0;
     display: flex;
+    gap: 40px;
   }
 
   li {
