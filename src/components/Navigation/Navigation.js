@@ -1,11 +1,27 @@
-import { NavLink } from 'react-router-dom';
+import { Nav, StyledNavLink } from './Navigation.styled';
 
-export const Navigation = () => {
+export const Navigation = ({ currentUser }) => {
   return (
-    <div>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/psychologists">Psychologists</NavLink>
-      <NavLink to="/favorites">Favorites</NavLink>
-    </div>
+    <Nav>
+      <ul>
+        <li>
+          <StyledNavLink to="/" activeclassname="active">
+            Home
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="/psychologists" activeclassname="active">
+            Psychologists
+          </StyledNavLink>
+        </li>
+        {currentUser && (
+          <li>
+            <StyledNavLink to="/favorites" activeclassname="active">
+              Favorites
+            </StyledNavLink>
+          </li>
+        )}
+      </ul>
+    </Nav>
   );
 };

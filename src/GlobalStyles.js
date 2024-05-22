@@ -1,0 +1,78 @@
+import { createGlobalStyle } from 'styled-components';
+import 'modern-normalize';
+import { theme } from './vars.js';
+
+import InterRegular from '../src/fonts/Inter-Regular.ttf';
+import InterMedium from '../src/fonts/Inter-Medium.ttf';
+import InterBold from '../src/fonts/Inter-Bold.ttf';
+
+export const GlobalStyles = createGlobalStyle`
+@font-face {
+    font-family: 'Inter';
+    src: url(${InterRegular}) format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url(${InterMedium}) format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url(${InterBold}) format('truetype');
+    font-weight: 700;
+}
+
+body{
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: ${theme.color.mainBackground};
+    color: ${theme.color.black};
+}
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        margin: 0;
+    }
+
+    ul,
+    ol {
+        margin: 0;
+        padding: 0;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    button {
+        cursor: pointer;
+    }
+    
+     .container {
+        width: ${theme.breakpoint.xl};
+        padding: 0 128px;
+        margin: 0 auto;
+        
+    }`;

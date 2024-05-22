@@ -4,8 +4,19 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { Login } from 'components/Login/Login';
 import { Navigation } from 'components/Navigation/Navigation';
 import { Signup } from 'components/Singup/Singup';
-import { NavLink } from 'react-router-dom';
 import { auth } from 'api/firebase/firebase';
+import {
+  AuthBox,
+  ButtonLoginLogout,
+  ButtonRegister,
+  ButtonsBox,
+  HeaderStyled,
+  Logo,
+  NavBox,
+  UserBox,
+} from './Header.styled';
+
+const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
 export const Header = ({ openModal, closeModal }) => {
   const navigate = useNavigate();
@@ -37,43 +48,52 @@ export const Header = ({ openModal, closeModal }) => {
   };
 
   return (
-    <header>
-      <nav>
-        <NavLink to="/">
-          psychologists.<span>services</span>
-        </NavLink>
-
-        <Navigation />
-
+    <HeaderStyled>
+      <div className="container">
         <div>
-          {currentUser ? (
-            <>
-              <img
-                src={
-                  currentUser.photoURL ||
-                  `${process.env.PUBLIC_URL}/images/default/default-avatar.png`
-                }
-                alt="User Avatar"
-                width="40"
-                height="40"
-              />
-              <span> {currentUser.displayName}</span>
-              <button type="button" onClick={handleLogout}>
-                Log out
-              </button>
-            </>
-          ) : (
-            <>
-              <button type="button" onClick={openLoginModal}>
-                Log in
-              </button>
-              <button type="button" onClick={openRegistrationModal}>
-                Registration
-              </button>
-            </>
-          )}
+          <NavBox>
+            <Logo to="/">
+              psychologists<span>.</span>
+              <span>services</span>
+            </Logo>
+
+            <Navigation currentUser={currentUser} />
+
+            <div>
+              {currentUser ? (
+                <AuthBox>
+                  <UserBox>
+                    <img
+                      src={
+                        currentUser.photoURL ||
+                        `${IMAGE_BASE_URL}/default/default-avatar.png`
+                      }
+                      alt="User Avatar"
+                      width="40"
+                      height="40"
+                    />
+                    <span> {currentUser.displayName}</span>
+                  </UserBox>
+                  <div>
+                    <ButtonLoginLogout type="button" onClick={handleLogout}>
+                      Log out
+                    </ButtonLoginLogout>
+                  </div>
+                </AuthBox>
+              ) : (
+                <ButtonsBox>
+                  <ButtonLoginLogout type="button" onClick={openLoginModal}>
+                    Log in
+                  </ButtonLoginLogout>
+                  <ButtonRegister type="button" onClick={openRegistrationModal}>
+                    Registration
+                  </ButtonRegister>
+                </ButtonsBox>
+              )}
+            </div>
+          </NavBox>
         </div>
-      </nav>
-    </header>
+      </div>
+    </HeaderStyled>
   );
 };

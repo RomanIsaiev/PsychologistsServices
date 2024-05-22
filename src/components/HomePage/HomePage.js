@@ -4,7 +4,7 @@ const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 export const HomePage = () => {
   return (
     <section>
-      <div>
+      <div className="container">
         <div>
           <div>
             <h1>
@@ -23,7 +23,10 @@ export const HomePage = () => {
           <div>
             <div>
               <div>
-                <img src={`${IMAGE_BASE_URL}/svg/check-mark-orange.svg`} />
+                <img
+                  src={`${IMAGE_BASE_URL}/svg/check-mark-orange.svg`}
+                  alt="check-mark"
+                />
               </div>
               <div>
                 <p>Experienced psychologists</p>
@@ -32,10 +35,16 @@ export const HomePage = () => {
             </div>
             <div>
               <div>
-                <img src={`${IMAGE_BASE_URL}/svg/people.svg`} />
+                <img
+                  src={`${IMAGE_BASE_URL}/svg/people.svg`}
+                  alt="people icon"
+                />
               </div>
               <div>
-                <img src={`${IMAGE_BASE_URL}/svg/question-sign.svg`} />
+                <img
+                  src={`${IMAGE_BASE_URL}/svg/question-sign.svg`}
+                  alt="question sign icon"
+                />
               </div>
               <picture>
                 <source
