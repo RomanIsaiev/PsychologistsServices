@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.css": "/PsychologistsServices/static/css/main.7acaea2f.css",
-    "main.js": "/PsychologistsServices/static/js/main.cb3f2537.js",
-    "static/js/266.3d7f3fd9.chunk.js": "/PsychologistsServices/static/js/266.3d7f3fd9.chunk.js",
+    "main.css": "/PsychologistsServices/static/css/main.f2db3b31.css",
+    "main.js": "/PsychologistsServices/static/js/main.90940efd.js",
+    "static/js/690.5e5777bf.chunk.js": "/PsychologistsServices/static/js/690.5e5777bf.chunk.js",
     "static/js/260.117a8bdd.chunk.js": "/PsychologistsServices/static/js/260.117a8bdd.chunk.js",
     "static/js/681.262d9336.chunk.js": "/PsychologistsServices/static/js/681.262d9336.chunk.js",
     "static/js/791.5503ee1b.chunk.js": "/PsychologistsServices/static/js/791.5503ee1b.chunk.js",
+    "static/media/Inter-Bold.ttf": "/PsychologistsServices/static/media/Inter-Bold.0eaf807b1cf0eceabe0f.ttf",
+    "static/media/Inter-Medium.ttf": "/PsychologistsServices/static/media/Inter-Medium.3f7acfe50aad7ad68548.ttf",
+    "static/media/Inter-Regular.ttf": "/PsychologistsServices/static/media/Inter-Regular.9ca9ba81e9dcaa12b3a1.ttf",
     "index.html": "/PsychologistsServices/index.html",
-    "main.7acaea2f.css.map": "/PsychologistsServices/static/css/main.7acaea2f.css.map",
-    "main.cb3f2537.js.map": "/PsychologistsServices/static/js/main.cb3f2537.js.map",
-    "266.3d7f3fd9.chunk.js.map": "/PsychologistsServices/static/js/266.3d7f3fd9.chunk.js.map",
+    "main.f2db3b31.css.map": "/PsychologistsServices/static/css/main.f2db3b31.css.map",
+    "main.90940efd.js.map": "/PsychologistsServices/static/js/main.90940efd.js.map",
+    "690.5e5777bf.chunk.js.map": "/PsychologistsServices/static/js/690.5e5777bf.chunk.js.map",
     "260.117a8bdd.chunk.js.map": "/PsychologistsServices/static/js/260.117a8bdd.chunk.js.map",
     "681.262d9336.chunk.js.map": "/PsychologistsServices/static/js/681.262d9336.chunk.js.map",
     "791.5503ee1b.chunk.js.map": "/PsychologistsServices/static/js/791.5503ee1b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.cb3f2537.js"
+    "static/css/main.f2db3b31.css",
+    "static/js/main.90940efd.js"
   ]
 }
