@@ -1,31 +1,41 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  loadPsychologists,
+  fetchPsychologists,
   loadMorePsychologists,
-} from '../../redux/psychologists/actions';
-import { fetchDataFromDatabase } from '../../redux/psychologists/api';
+} from '../../redux/psychologists/psychoReducer';
+
 import { PsychoItem } from 'components/PsychoItem/PsychoItem';
 import { ButtonRegister } from 'components/Header/Header.styled';
 
 export const PsychoList = () => {
   const dispatch = useDispatch();
-  const psychologists = useSelector(state => state.psychologists);
-  const loadedPsychologists = useSelector(state => state.loadedPsychologists);
+  const {
+    psychologists,
+    loadedPsychologists,
+    currentPage,
+    itemsPerPage,
+    status,
+    error,
+  } = useSelector(state => state.psychologists);
 
   useEffect(() => {
-    fetchDataFromDatabase('/')
-      .then(data => {
-        dispatch(loadPsychologists(Object.values(data)));
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, [dispatch]);
+    if (status === 'idle') {
+      dispatch(fetchPsychologists());
+    }
+  }, [status, dispatch]);
 
   const handleLoadMore = () => {
     dispatch(loadMorePsychologists());
   };
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (status === 'failed') {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="container">
@@ -34,7 +44,7 @@ export const PsychoList = () => {
           <PsychoItem key={index} psychologist={psychologist} />
         ))}
       </ul>
-      {psychologists.length < loadedPsychologists.length && (
+      {currentPage * itemsPerPage < loadedPsychologists.length && (
         <ButtonRegister onClick={handleLoadMore}>Load more</ButtonRegister>
       )}
     </div>

@@ -1,8 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './psychologists/reducer';
+
+import psychoReducer from './psychologists/psychoReducer';
+import { favoritesReducer } from './psychologists/favoriteReducer';
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    psychologists: psychoReducer,
+    favorites: favoritesReducer,
+  },
 });
 
 export default store;
