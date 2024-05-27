@@ -5,8 +5,9 @@ import {
   loadMorePsychologists,
 } from '../../redux/psychologists/psychoReducer';
 
-import { PsychoItem } from 'components/PsychoItem/PsychoItem';
+import { PsychoItem } from '../PsychoItem/PsychoItem';
 import { ButtonRegister } from 'components/Header/Header.styled';
+import Filter from 'components/Filter/Filter';
 
 export const PsychoList = () => {
   const dispatch = useDispatch();
@@ -39,9 +40,10 @@ export const PsychoList = () => {
 
   return (
     <div className="container">
+      <Filter />
       <ul>
         {psychologists.map((psychologist, index) => (
-          <PsychoItem key={index} psychologist={psychologist} />
+          <PsychoItem key={index} psychologist={psychologist} index={index} />
         ))}
       </ul>
       {currentPage * itemsPerPage < loadedPsychologists.length && (

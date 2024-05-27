@@ -27,6 +27,7 @@ const initialState = {
   itemsPerPage: 3,
   status: 'idle',
   error: null,
+  sortBy: 'all',
 };
 
 const psychologistsSlice = createSlice({
@@ -35,6 +36,13 @@ const psychologistsSlice = createSlice({
   reducers: {
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
+    },
+    setSortBy: (state, action) => {
+      state.sortBy = action.payload;
+      state.psychologists = sortPsychologists(
+        state.loadedPsychologists,
+        action.payload
+      );
     },
   },
   extraReducers: builder => {
@@ -46,19 +54,49 @@ const psychologistsSlice = createSlice({
       .addCase(fetchPsychologists.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.loadedPsychologists = action.payload;
-        state.psychologists = action.payload.slice(0, state.itemsPerPage);
+        state.psychologists = sortPsychologists(
+          action.payload.slice(0, state.itemsPerPage),
+          state.sortBy
+        );
       })
       .addCase(fetchPsychologists.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
       .addCase(loadMorePsychologists.fulfilled, (state, action) => {
-        state.psychologists = [...state.psychologists, ...action.payload];
+        state.psychologists = sortPsychologists(
+          [...state.psychologists, ...action.payload],
+          state.sortBy
+        );
         state.currentPage += 1;
       });
   },
 });
 
-export const { setCurrentPage } = psychologistsSlice.actions;
+const sortPsychologists = (psychologists, sortBy) => {
+  switch (sortBy) {
+    case 'name_asc':
+      return [...psychologists].sort((a, b) => a.name.localeCompare(b.name));
+    case 'name_desc':
+      return [...psychologists].sort((a, b) => b.name.localeCompare(a.name));
+    case 'price_high_low':
+      return [...psychologists].sort(
+        (a, b) => b.price_per_hour - a.price_per_hour
+      );
+    case 'price_low_high':
+      return [...psychologists].sort(
+        (a, b) => a.price_per_hour - b.price_per_hour
+      );
+    case 'popular':
+      return [...psychologists].sort((a, b) => b.rating - a.rating);
+    case 'not_popular':
+      return [...psychologists].sort((a, b) => a.rating - b.rating);
+    case 'all':
+    default:
+      return psychologists;
+  }
+};
+
+export const { setCurrentPage, setSortBy } = psychologistsSlice.actions;
 
 export default psychologistsSlice.reducer;
