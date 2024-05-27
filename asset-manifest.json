@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/PsychologistsServices/static/css/main.f2db3b31.css",
-    "main.js": "/PsychologistsServices/static/js/main.06a329a0.js",
+    "main.js": "/PsychologistsServices/static/js/main.2cf8ebfa.js",
     "static/js/762.9d479168.chunk.js": "/PsychologistsServices/static/js/762.9d479168.chunk.js",
-    "static/js/54.e7d55274.chunk.js": "/PsychologistsServices/static/js/54.e7d55274.chunk.js",
-    "static/js/681.b60d2468.chunk.js": "/PsychologistsServices/static/js/681.b60d2468.chunk.js",
+    "static/js/488.62f17eda.chunk.js": "/PsychologistsServices/static/js/488.62f17eda.chunk.js",
+    "static/js/541.ff9c1666.chunk.js": "/PsychologistsServices/static/js/541.ff9c1666.chunk.js",
     "static/js/791.aa504820.chunk.js": "/PsychologistsServices/static/js/791.aa504820.chunk.js",
     "static/media/Inter-Bold.ttf": "/PsychologistsServices/static/media/Inter-Bold.0eaf807b1cf0eceabe0f.ttf",
     "static/media/Inter-Medium.ttf": "/PsychologistsServices/static/media/Inter-Medium.3f7acfe50aad7ad68548.ttf",
     "static/media/Inter-Regular.ttf": "/PsychologistsServices/static/media/Inter-Regular.9ca9ba81e9dcaa12b3a1.ttf",
     "index.html": "/PsychologistsServices/index.html",
     "main.f2db3b31.css.map": "/PsychologistsServices/static/css/main.f2db3b31.css.map",
-    "main.06a329a0.js.map": "/PsychologistsServices/static/js/main.06a329a0.js.map",
+    "main.2cf8ebfa.js.map": "/PsychologistsServices/static/js/main.2cf8ebfa.js.map",
     "762.9d479168.chunk.js.map": "/PsychologistsServices/static/js/762.9d479168.chunk.js.map",
-    "54.e7d55274.chunk.js.map": "/PsychologistsServices/static/js/54.e7d55274.chunk.js.map",
-    "681.b60d2468.chunk.js.map": "/PsychologistsServices/static/js/681.b60d2468.chunk.js.map",
+    "488.62f17eda.chunk.js.map": "/PsychologistsServices/static/js/488.62f17eda.chunk.js.map",
+    "541.ff9c1666.chunk.js.map": "/PsychologistsServices/static/js/541.ff9c1666.chunk.js.map",
     "791.aa504820.chunk.js.map": "/PsychologistsServices/static/js/791.aa504820.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f2db3b31.css",
-    "static/js/main.06a329a0.js"
+    "static/js/main.2cf8ebfa.js"
   ]
 }
