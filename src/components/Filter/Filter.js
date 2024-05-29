@@ -17,7 +17,7 @@ const Filter = ({ isOpen, onToggle }) => {
   const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
   const filterOptions = [
-    { label: 'Show All', value: 'all' },
+    { label: 'All', value: 'all' },
     { label: 'Name A-Z', value: 'name_asc' },
     { label: 'Name Z-A', value: 'name_desc' },
     { label: 'Price High to Low', value: 'price_high_low' },

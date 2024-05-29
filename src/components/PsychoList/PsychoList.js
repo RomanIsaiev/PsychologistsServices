@@ -7,9 +7,12 @@ import {
 } from '../../redux/psychologists/psychoReducer';
 
 import { PsychoItem } from '../PsychoItem/PsychoItem';
-import { ButtonRegister } from 'components/Header/Header.styled';
 import Filter from 'components/Filter/Filter';
-import { PsychoContainer, PsychoStyledList } from './PsychoList.styled';
+import {
+  LoadMoreBtn,
+  PsychoContainer,
+  PsychoStyledList,
+} from './PsychoList.styled';
 
 export const PsychoList = () => {
   const dispatch = useDispatch();
@@ -85,7 +88,7 @@ export const PsychoList = () => {
         ))}
       </PsychoStyledList>
       {currentPage * itemsPerPage < loadedPsychologists.length && (
-        <ButtonRegister onClick={handleLoadMore}>Load more</ButtonRegister>
+        <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
       )}
     </PsychoContainer>
   );
