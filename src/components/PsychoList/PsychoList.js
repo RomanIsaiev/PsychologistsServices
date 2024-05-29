@@ -8,6 +8,7 @@ import {
 import { PsychoItem } from '../PsychoItem/PsychoItem';
 import { ButtonRegister } from 'components/Header/Header.styled';
 import Filter from 'components/Filter/Filter';
+import { PsychoContainer, PsychoStyledList } from './PsychoList.styled';
 
 export const PsychoList = () => {
   const dispatch = useDispatch();
@@ -39,16 +40,16 @@ export const PsychoList = () => {
   }
 
   return (
-    <div className="container">
+    <PsychoContainer className="container">
       <Filter />
-      <ul>
+      <PsychoStyledList>
         {psychologists.map((psychologist, index) => (
           <PsychoItem key={index} psychologist={psychologist} index={index} />
         ))}
-      </ul>
+      </PsychoStyledList>
       {currentPage * itemsPerPage < loadedPsychologists.length && (
         <ButtonRegister onClick={handleLoadMore}>Load more</ButtonRegister>
       )}
-    </div>
+    </PsychoContainer>
   );
 };

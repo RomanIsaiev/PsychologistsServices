@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { Login } from 'components/Login/Login';
 import { Navigation } from 'components/Navigation/Navigation';
@@ -20,6 +20,7 @@ const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
 export const Header = ({ openModal, closeModal }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -47,8 +48,10 @@ export const Header = ({ openModal, closeModal }) => {
     }
   };
 
+  const isHomePage = location.pathname === '/';
+
   return (
-    <HeaderStyled>
+    <HeaderStyled $isHomePage={isHomePage}>
       <div className="container">
         <div>
           <NavBox>

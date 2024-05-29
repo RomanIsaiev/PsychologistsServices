@@ -2,7 +2,7 @@ import { PsychoList } from 'components/PsychoList/PsychoList';
 
 export default function Psychologists() {
   return (
-    <div>
+    <div className="psychologists">
       <PsychoList />
     </div>
   );

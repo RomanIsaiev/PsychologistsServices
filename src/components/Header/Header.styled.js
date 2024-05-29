@@ -3,20 +3,17 @@ import styled from 'styled-components';
 
 export const HeaderStyled = styled.header`
   padding-top: 24px;
+  background: ${props => (props.$isHomePage ? '#FBFBFB' : '#F3F3F3')};
 
   &::after {
     content: '';
     display: block;
-
     width: 100%;
     height: 1px;
-
     margin-top: 26px;
-
     background: rgba(25, 26, 21, 0.1);
   }
 `;
-
 export const NavBox = styled.div`
   display: flex;
   align-items: center;

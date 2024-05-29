@@ -4,6 +4,35 @@ import {
   addFavorite,
   removeFavorite,
 } from '../../redux/psychologists/favoriteReducer';
+import {
+  AvatarWrapper,
+  CardTitle,
+  Comment,
+  Desc,
+  ExpendedBtn,
+  ExpertiseItem,
+  ExpertiseList,
+  FavoriteBtn,
+  Flex,
+  FlexRating,
+  FlexWrapper,
+  Item,
+  Name,
+  OnlineIcon,
+  Price,
+  PriceContainer,
+  PsychoAvatar,
+  RatingPriceContainer,
+  ReviewAvatar,
+  ReviewAvatarLetter,
+  ReviewBox,
+  ReviewItem,
+  ReviewUserContainer,
+  ReviewUserName,
+  ReviewUserRatingContainer,
+  ReviewWrapper,
+} from './PsychoItem.styled';
+import { ButtonRegister } from 'components/Header/Header.styled';
 
 export const PsychoItem = ({ psychologist, index }) => {
   const {
@@ -47,31 +76,81 @@ export const PsychoItem = ({ psychologist, index }) => {
   };
 
   return (
-    <li>
-      <div>
+    <Item>
+      <FlexWrapper>
         <div>
-          <div>
-            <img
+          <AvatarWrapper>
+            <OnlineIcon
+              src={`${IMAGE_BASE_URL}/svg/online.svg`}
+              width="14"
+              height="14"
+              alt="online"
+            />
+            <PsychoAvatar
               src={avatar_url}
               width="96"
               height="96"
               alt="psychologistphoto"
             />
-          </div>
+          </AvatarWrapper>
         </div>
         <div>
-          <span>Psychologist</span>
-          <h3>{name}</h3>
-          <ul>
-            <li>Experience: {experience}</li>
-            <li>License: {license}</li>
-            <li>Specialization: {specialization}</li>
-            <li>Initial consultation: {initial_consultation}</li>
-          </ul>
-          <p>{about}</p>
+          <CardTitle>Psychologist</CardTitle>
+          <Name>{name}</Name>
+          <ExpertiseList>
+            <ExpertiseItem>
+              Experience: <span>{experience}</span>
+            </ExpertiseItem>
+            <ExpertiseItem>
+              License: <span>{license}</span>
+            </ExpertiseItem>
+            <ExpertiseItem>
+              Specialization: <span>{specialization}</span>
+            </ExpertiseItem>
+            <ExpertiseItem>
+              Initial consultation: <span>{initial_consultation}</span>
+            </ExpertiseItem>
+          </ExpertiseList>
+          <Desc>{about}</Desc>
+          <ExpendedBtn onClick={handleReadMore} type="button">
+            {expanded ? 'Show Less' : 'Read More'}
+          </ExpendedBtn>
+          {expanded && (
+            <div>
+              <ReviewWrapper>
+                {reviews.map((review, reviewIndex) => (
+                  <ReviewItem key={reviewIndex}>
+                    <div>
+                      <ReviewUserContainer>
+                        <ReviewAvatar>
+                          <ReviewAvatarLetter>
+                            {review.reviewer.slice(0, 1)}
+                          </ReviewAvatarLetter>
+                        </ReviewAvatar>
+                        <div>
+                          <ReviewUserName>{review.reviewer}</ReviewUserName>
+                          <ReviewUserRatingContainer>
+                            <img
+                              src={`${IMAGE_BASE_URL}/svg/star.svg`}
+                              alt="star"
+                              width="16"
+                              height="16"
+                            />
+                            <span>{review.rating}</span>
+                          </ReviewUserRatingContainer>
+                        </div>
+                      </ReviewUserContainer>
+                      <Comment>{review.comment}</Comment>
+                    </div>
+                  </ReviewItem>
+                ))}
+              </ReviewWrapper>
+              <ButtonRegister type="button">Make an appointment</ButtonRegister>
+            </div>
+          )}
         </div>
-        <div>
-          <div>
+        <RatingPriceContainer>
+          <FlexRating>
             <img
               src={`${IMAGE_BASE_URL}/svg/star.svg`}
               alt="star"
@@ -79,61 +158,34 @@ export const PsychoItem = ({ psychologist, index }) => {
               height="16"
             />
             <p>Rating: {rating}</p>
-          </div>
+          </FlexRating>
           <span>|</span>
+          <PriceContainer>
+            <Price>
+              Price / 1 hour: <span>{price_per_hour}$</span>
+            </Price>
+          </PriceContainer>
           <div>
-            <p>Price / 1 hour: {price_per_hour}$</p>
-          </div>
-          <div>
-            <button type="button" onClick={handleFavoriteClick}>
+            <FavoriteBtn type="button" onClick={handleFavoriteClick}>
               {isFavorite ? (
                 <img
                   src={`${IMAGE_BASE_URL}/svg/heart-fill.svg`}
                   alt="star"
-                  width="16"
-                  height="16"
+                  width="26"
+                  height="26"
                 />
               ) : (
                 <img
                   src={`${IMAGE_BASE_URL}/svg/heart-empty.svg`}
                   alt="star"
-                  width="16"
-                  height="16"
+                  width="26"
+                  height="26"
                 />
               )}
-            </button>
+            </FavoriteBtn>
           </div>
-        </div>
-        {expanded && (
-          <div>
-            {reviews.map((review, reviewIndex) => (
-              <div key={reviewIndex}>
-                <div>
-                  <div>
-                    <div>{review.reviewer.slice(0, 1)}</div>
-                    <div>
-                      <p>{review.reviewer}</p>
-                      <div>
-                        <img
-                          src={`${IMAGE_BASE_URL}/svg/star.svg`}
-                          alt="star"
-                          width="16"
-                          height="16"
-                        />
-                        <span>{review.rating}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <p>{review.comment}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        <button onClick={handleReadMore}>
-          {expanded ? 'Show Less' : 'Read More'}
-        </button>
-      </div>
-    </li>
+        </RatingPriceContainer>
+      </FlexWrapper>
+    </Item>
   );
 };

@@ -28,9 +28,6 @@ export const GlobalStyles = createGlobalStyle`
 body{
     margin: 0;
     font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: ${theme.color.mainBackground};
     color: ${theme.color.black};
 }
 
@@ -70,9 +67,13 @@ body{
         cursor: pointer;
     }
     
-     .container {
+    .container {
         max-width: ${theme.breakpoint.xl};
         width: 100%;
         padding: 0 128px;
         margin: 0 auto;
+    }
+    
+    .psychologists{
+    background: #F3F3F3;
     }`;
