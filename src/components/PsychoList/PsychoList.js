@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
   fetchPsychologists,
   loadMorePsychologists,
@@ -13,6 +14,8 @@ import {
   PsychoContainer,
   PsychoStyledList,
 } from './PsychoList.styled';
+import { Modal } from 'components/Modal/Modal';
+import { AppointmentForm } from 'components/AppointmentForm/AppointmentForm';
 
 export const PsychoList = () => {
   const dispatch = useDispatch();
@@ -26,6 +29,8 @@ export const PsychoList = () => {
   } = useSelector(state => state.psychologists);
 
   const [isFilterOpen, setFilterOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPsychologist, setSelectedPsychologist] = useState(null);
   const sortBy = useSelector(state => state.psychologists.sortBy);
 
   useEffect(() => {
@@ -75,6 +80,16 @@ export const PsychoList = () => {
     }
   });
 
+  const handleAppoClick = psychologist => {
+    setSelectedPsychologist(psychologist);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPsychologist(null);
+  };
+
   return (
     <PsychoContainer className="container">
       <Filter
@@ -84,11 +99,23 @@ export const PsychoList = () => {
       />
       <PsychoStyledList>
         {sortedPsychologists.map((psychologist, index) => (
-          <PsychoItem key={index} psychologist={psychologist} index={index} />
+          <PsychoItem
+            key={index}
+            psychologist={psychologist}
+            onAppointmentClick={handleAppoClick}
+          />
         ))}
       </PsychoStyledList>
       {currentPage * itemsPerPage < loadedPsychologists.length && (
         <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
+      )}
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <AppointmentForm
+            psychologist={selectedPsychologist}
+            onClose={closeModal}
+          />
+        </Modal>
       )}
     </PsychoContainer>
   );

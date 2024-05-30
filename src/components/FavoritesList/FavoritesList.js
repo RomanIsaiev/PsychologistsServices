@@ -6,11 +6,15 @@ import Filter from 'components/Filter/Filter';
 import { FavoriteContainer, NoFavorite } from './FavoritesList.styled';
 import { setSortBy } from '../../redux/psychologists/psychoReducer';
 import { PsychoStyledList } from 'components/PsychoList/PsychoList.styled';
+import { Modal } from 'components/Modal/Modal';
+import { AppointmentForm } from 'components/AppointmentForm/AppointmentForm';
 
 export const FavoritesList = () => {
   const dispatch = useDispatch();
 
   const favorites = useSelector(state => state.favorites.items);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPsychologist, setSelectedPsychologist] = useState(null);
   const sortBy = useSelector(state => state.psychologists.sortBy);
   const [isFilterOpen, setFilterOpen] = useState(false);
 
@@ -47,6 +51,16 @@ export const FavoritesList = () => {
     }
   });
 
+  const handleAppoClick = psychologist => {
+    setSelectedPsychologist(psychologist);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPsychologist(null);
+  };
+
   return (
     <FavoriteContainer className="container">
       {favorites.length === 0 ? (
@@ -63,11 +77,19 @@ export const FavoritesList = () => {
               <PsychoItem
                 key={index}
                 psychologist={psychologist}
-                index={index}
+                onAppointmentClick={handleAppoClick}
               />
             ))}
           </PsychoStyledList>
         </>
+      )}
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <AppointmentForm
+            psychologist={selectedPsychologist}
+            onClose={closeModal}
+          />
+        </Modal>
       )}
     </FavoriteContainer>
   );

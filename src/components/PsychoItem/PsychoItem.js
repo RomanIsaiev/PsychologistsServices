@@ -5,6 +5,7 @@ import {
   removeFavorite,
 } from '../../redux/psychologists/favoriteReducer';
 import {
+  AppoBtn,
   AvatarWrapper,
   CardTitle,
   Comment,
@@ -30,10 +31,9 @@ import {
   ReviewUserRatingContainer,
   ReviewWrapper,
 } from './PsychoItem.styled';
-import { ButtonRegister } from 'components/Header/Header.styled';
 import { toast } from 'react-toastify';
 
-export const PsychoItem = ({ psychologist, index }) => {
+export const PsychoItem = ({ psychologist, onAppointmentClick }) => {
   const {
     about,
     avatar_url,
@@ -150,7 +150,12 @@ export const PsychoItem = ({ psychologist, index }) => {
                   </ReviewItem>
                 ))}
               </ReviewWrapper>
-              <ButtonRegister type="button">Make an appointment</ButtonRegister>
+              <AppoBtn
+                type="button"
+                onClick={() => onAppointmentClick(psychologist)}
+              >
+                Make an appointment
+              </AppoBtn>
             </div>
           )}
         </div>

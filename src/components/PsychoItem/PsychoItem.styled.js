@@ -219,3 +219,21 @@ export const Comment = styled.p`
   font-weight: 400;
   line-height: 20px; /* 125% */
 `;
+
+export const AppoBtn = styled.button`
+  color: #fbfbfb;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.16px;
+  border-radius: 30px;
+  padding: 14px 32px;
+
+  border: none;
+  cursor: pointer;
+
+  border-radius: 30px;
+  background: #fc832c;
+`;

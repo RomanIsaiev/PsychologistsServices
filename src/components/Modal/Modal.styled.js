@@ -10,6 +10,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 export const ModalContainer = styled.div`
@@ -30,4 +31,6 @@ export const CloseButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+
+  z-index: 999;
 `;
