@@ -27,9 +27,6 @@ export const PsychoList = () => {
 
   const [isFilterOpen, setFilterOpen] = useState(false);
   const sortBy = useSelector(state => state.psychologists.sortBy);
-  const auth = useSelector(state => state);
-
-  console.log(auth);
 
   useEffect(() => {
     if (status === 'idle') {

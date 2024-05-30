@@ -50,7 +50,6 @@ export const Login = ({ onClose }) => {
           })
         );
         navigate('/psychologists');
-        console.log(user);
         onClose();
       })
       .catch(error => {
