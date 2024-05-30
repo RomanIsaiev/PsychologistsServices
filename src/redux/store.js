@@ -4,11 +4,13 @@ import {
   initializeFavorites,
 } from './psychologists/favoriteReducer';
 import psychoReducer from './psychologists/psychoReducer';
+import authReducer from './auth/authReducer';
 
 const store = configureStore({
   reducer: {
     favorites: favoritesReducer,
     psychologists: psychoReducer,
+    auth: authReducer,
   },
 });
 

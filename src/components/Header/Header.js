@@ -15,12 +15,15 @@ import {
   NavBox,
   UserBox,
 } from './Header.styled';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/auth/authReducer';
 
 const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
 export const Header = ({ openModal, closeModal }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -42,6 +45,7 @@ export const Header = ({ openModal, closeModal }) => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      dispatch(logout());
       navigate('/');
     } catch (error) {
       console.error(error);

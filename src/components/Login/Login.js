@@ -15,6 +15,8 @@ import {
   ModalTitle,
   PasswordBox,
 } from 'components/Singup/Singup.styled';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/auth/authReducer';
 
 const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
@@ -25,6 +27,7 @@ const schema = yup.object().shape({
 
 export const Login = ({ onClose }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -39,6 +42,13 @@ export const Login = ({ onClose }) => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then(userCredential => {
         const user = userCredential.user;
+        dispatch(
+          login({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+          })
+        );
         navigate('/psychologists');
         console.log(user);
         onClose();

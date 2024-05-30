@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initializeFavorites } from '../../redux/psychologists/favoriteReducer';
 import { PsychoItem } from 'components/PsychoItem/PsychoItem';
 import Filter from 'components/Filter/Filter';
-import { FavoriteContainer } from './FavoritesList.styled';
+import { FavoriteContainer, NoFavorite } from './FavoritesList.styled';
 import { setSortBy } from '../../redux/psychologists/psychoReducer';
 import { PsychoStyledList } from 'components/PsychoList/PsychoList.styled';
 
@@ -17,10 +17,6 @@ export const FavoritesList = () => {
   useEffect(() => {
     dispatch(initializeFavorites());
   }, [dispatch]);
-
-  if (favorites.length === 0) {
-    return <div>No favorite psychologists.</div>;
-  }
 
   const toggleFilter = () => {
     setFilterOpen(!isFilterOpen);
@@ -53,16 +49,26 @@ export const FavoritesList = () => {
 
   return (
     <FavoriteContainer className="container">
-      <Filter
-        isOpen={isFilterOpen}
-        onToggle={toggleFilter}
-        onSelect={handleSelect}
-      />
-      <PsychoStyledList>
-        {sortedPsychologists.map((psychologist, index) => (
-          <PsychoItem key={index} psychologist={psychologist} index={index} />
-        ))}
-      </PsychoStyledList>
+      {favorites.length === 0 ? (
+        <NoFavorite>No favorite psychologists.</NoFavorite>
+      ) : (
+        <>
+          <Filter
+            isOpen={isFilterOpen}
+            onToggle={toggleFilter}
+            onSelect={handleSelect}
+          />
+          <PsychoStyledList>
+            {sortedPsychologists.map((psychologist, index) => (
+              <PsychoItem
+                key={index}
+                psychologist={psychologist}
+                index={index}
+              />
+            ))}
+          </PsychoStyledList>
+        </>
+      )}
     </FavoriteContainer>
   );
 };
