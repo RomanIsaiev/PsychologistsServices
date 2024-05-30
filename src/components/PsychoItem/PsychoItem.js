@@ -13,7 +13,6 @@ import {
   ExpertiseItem,
   ExpertiseList,
   FavoriteBtn,
-  Flex,
   FlexRating,
   FlexWrapper,
   Item,
@@ -25,7 +24,6 @@ import {
   RatingPriceContainer,
   ReviewAvatar,
   ReviewAvatarLetter,
-  ReviewBox,
   ReviewItem,
   ReviewUserContainer,
   ReviewUserName,
@@ -33,6 +31,7 @@ import {
   ReviewWrapper,
 } from './PsychoItem.styled';
 import { ButtonRegister } from 'components/Header/Header.styled';
+import { toast } from 'react-toastify';
 
 export const PsychoItem = ({ psychologist, index }) => {
   const {
@@ -56,6 +55,7 @@ export const PsychoItem = ({ psychologist, index }) => {
   );
 
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
   useEffect(() => {
     setIsFavorite(favorites.some(item => item.name === name));
@@ -66,6 +66,11 @@ export const PsychoItem = ({ psychologist, index }) => {
   };
 
   const handleFavoriteClick = () => {
+    if (!isAuthenticated) {
+      toast.warn('You need to log in or register to add favorites.');
+      return;
+    }
+
     if (isFavorite) {
       dispatch(removeFavorite(psychologist));
       setIsFavorite(false);
