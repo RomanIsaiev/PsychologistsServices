@@ -18,6 +18,10 @@ import {
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { login } from '../../redux/auth/authReducer';
+import {
+  initializeFavorites,
+  setUid,
+} from '../../redux/psychologists/favoriteReducer';
 
 const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
@@ -58,6 +62,8 @@ export const Signup = ({ onClose }) => {
           displayName: user.displayName,
         })
       );
+      dispatch(setUid(user.uid));
+      dispatch(initializeFavorites());
       navigate('/psychologists');
       onClose();
     } catch (error) {

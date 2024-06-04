@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const PsychoContainer = styled.div`
-  padding-top: 64px;
-  padding-bottom: 64px;
-`;
-
 export const PsychoStyledList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -21,7 +16,6 @@ export const LoadMoreBtn = styled.button`
   line-height: 20px; /* 125% */
   letter-spacing: -0.16px;
   border-radius: 30px;
-  padding: 14px 39px;
   border: none;
   cursor: pointer;
 

@@ -17,6 +17,10 @@ import {
 } from 'components/Singup/Singup.styled';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/authReducer';
+import {
+  initializeFavorites,
+  setUid,
+} from '../../redux/psychologists/favoriteReducer';
 
 const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
@@ -49,6 +53,9 @@ export const Login = ({ onClose }) => {
             displayName: user.displayName,
           })
         );
+        dispatch(setUid(user.uid));
+        dispatch(initializeFavorites());
+        localStorage.setItem('userId', user.uid);
         navigate('/psychologists');
         onClose();
       })

@@ -75,9 +75,17 @@ body{
     }
     
     .psychologists{
+    padding-top: 64px;
+    padding-bottom: 64px;
     background: #F3F3F3;
+    min-height: 100vh;
+    height: 100%;
     }
     
-     .favorites{
+    .favorites{
+    padding-top: 64px;
+    padding-bottom: 64px;
     background: #F3F3F3;
+    min-height: 100vh;
+    height: 100%;
     }`;

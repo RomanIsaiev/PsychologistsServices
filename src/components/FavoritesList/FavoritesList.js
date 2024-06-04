@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initializeFavorites } from '../../redux/psychologists/favoriteReducer';
 import { PsychoItem } from 'components/PsychoItem/PsychoItem';
 import Filter from 'components/Filter/Filter';
-import { FavoriteContainer, NoFavorite } from './FavoritesList.styled';
+import { NoFavorite } from './FavoritesList.styled';
 import { setSortBy } from '../../redux/psychologists/psychoReducer';
 import { PsychoStyledList } from 'components/PsychoList/PsychoList.styled';
 import { Modal } from 'components/Modal/Modal';
@@ -12,6 +12,8 @@ import { AppointmentForm } from 'components/AppointmentForm/AppointmentForm';
 export const FavoritesList = () => {
   const dispatch = useDispatch();
 
+  const uid = useSelector(state => state.auth.uid);
+
   const favorites = useSelector(state => state.favorites.items);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPsychologist, setSelectedPsychologist] = useState(null);
@@ -19,8 +21,10 @@ export const FavoritesList = () => {
   const [isFilterOpen, setFilterOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(initializeFavorites());
-  }, [dispatch]);
+    if (uid) {
+      dispatch(initializeFavorites());
+    }
+  }, [dispatch, uid]);
 
   const toggleFilter = () => {
     setFilterOpen(!isFilterOpen);
@@ -62,7 +66,7 @@ export const FavoritesList = () => {
   };
 
   return (
-    <FavoriteContainer className="container">
+    <div className="container">
       {favorites.length === 0 ? (
         <NoFavorite>No favorite psychologists.</NoFavorite>
       ) : (
@@ -91,6 +95,6 @@ export const FavoritesList = () => {
           />
         </Modal>
       )}
-    </FavoriteContainer>
+    </div>
   );
 };

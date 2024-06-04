@@ -8,11 +8,7 @@ import {
 
 import { PsychoItem } from '../PsychoItem/PsychoItem';
 import Filter from 'components/Filter/Filter';
-import {
-  LoadMoreBtn,
-  PsychoContainer,
-  PsychoStyledList,
-} from './PsychoList.styled';
+import { LoadMoreBtn, PsychoStyledList } from './PsychoList.styled';
 import { Modal } from 'components/Modal/Modal';
 import { AppointmentForm } from 'components/AppointmentForm/AppointmentForm';
 
@@ -90,7 +86,7 @@ export const PsychoList = () => {
   };
 
   return (
-    <PsychoContainer className="container">
+    <div className="container">
       <Filter
         isOpen={isFilterOpen}
         onToggle={toggleFilter}
@@ -116,6 +112,6 @@ export const PsychoList = () => {
           />
         </Modal>
       )}
-    </PsychoContainer>
+    </div>
   );
 };

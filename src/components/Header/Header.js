@@ -46,6 +46,7 @@ export const Header = ({ openModal, closeModal }) => {
     try {
       await signOut(auth);
       dispatch(logout());
+      localStorage.removeItem('currentUid');
       navigate('/');
     } catch (error) {
       console.error(error);
