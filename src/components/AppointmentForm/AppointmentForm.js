@@ -16,11 +16,10 @@ import {
   PsychologistImage,
   PsychologistName,
   SendBtn,
-  TimeInput,
 } from './AppointmentForm.styled';
+import TimePicker from 'components/Custom/TimePicker/TimePicker';
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const phoneRegExp = /^\+?[1-9]\d{1,14}$/;
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
@@ -47,6 +46,10 @@ export const AppointmentForm = ({ psychologist, onClose }) => {
   const handlePhoneChange = e => {
     setPhoneValue(e.target.value);
     setValue('phone', e.target.value);
+  };
+
+  const handleTimeChange = time => {
+    setValue('time', time);
   };
 
   const onSubmit = () => {
@@ -93,7 +96,7 @@ export const AppointmentForm = ({ psychologist, onClose }) => {
             )}
           </div>
           <div>
-            <TimeInput type="time" {...register('time')} />
+            <TimePicker onChange={handleTimeChange} />
             {errors.time && (
               <AttentionForm>{errors.time.message}</AttentionForm>
             )}

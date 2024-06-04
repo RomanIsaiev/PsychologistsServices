@@ -76,4 +76,8 @@ body{
     
     .psychologists{
     background: #F3F3F3;
+    }
+    
+     .favorites{
+    background: #F3F3F3;
     }`;

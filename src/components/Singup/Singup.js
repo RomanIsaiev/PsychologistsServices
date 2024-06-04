@@ -15,6 +15,9 @@ import {
   ModalTitle,
   PasswordBox,
 } from './Singup.styled';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { login } from '../../redux/auth/authReducer';
 
 const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
@@ -28,6 +31,7 @@ const schema = yup.object().shape({
 });
 
 export const Signup = ({ onClose }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     register,
@@ -47,9 +51,23 @@ export const Signup = ({ onClose }) => {
         data.password
       );
       await updateProfile(user, { displayName: data.name });
+      dispatch(
+        login({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+        })
+      );
       navigate('/psychologists');
       onClose();
     } catch (error) {
+      if (error.code === 'auth/weak-password') {
+        toast.warn('Password should be at least 6 characters long');
+      } else if (error.code === 'auth/email-already-in-use') {
+        toast.warn('Email is already in use');
+      } else {
+        toast.warn(error.message);
+      }
       console.log(error);
     }
   };

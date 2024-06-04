@@ -1,111 +1,98 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  ClockIcon,
+  Label,
+  OptionsList,
+  OptionsTitle,
+  PickerContainer,
+  PickerTitle,
+  TimeItem,
+  TimeList,
+  TimeListsContainer,
+  TimePickerWrapper,
+} from './TimePicker.styled';
 
-const TimePickerContainer = styled.div`
-  display: flex;
-`;
+const TimePicker = ({ onChange }) => {
+  const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
-const TimeList = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  height: 100px;
-  width: 50px;
-  position: relative;
-`;
+  const [selectedTime, setSelectedTime] = useState('09:00');
+  const [isClockPickerOpen, setClockPickerOpen] = useState(false);
+  const timeRef = useRef(null);
 
-const TimeItem = styled.div`
-  padding: 10px;
-  cursor: pointer;
-  &:hover {
-    background-color: #f0f0f0;
-  }
-`;
+  const times = [
+    '09:00',
+    '09:30',
+    '10:00',
+    '10:30',
+    '11:00',
+    '11:30',
+    '12:00',
+    '12:30',
+    '13:00',
+    '13:30',
+    '14:00',
+    '14:30',
+    '15:00',
+    '15:30',
+    '16:00',
+  ];
 
-const ArrowButton = styled.button`
-  background-color: #f0f0f0;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  padding: 5px;
-  margin: 5px 0;
-  &:hover {
-    background-color: #d0d0d0;
-  }
-`;
-
-const CustomTimePicker = ({ onChange }) => {
-  const hours = Array.from({ length: 24 }, (_, i) =>
-    i < 10 ? `0${i}` : `${i}`
-  );
-  const minutes = ['00', '30'];
-  const [selectedHour, setSelectedHour] = useState(hours[0]);
-  const [selectedMinute, setSelectedMinute] = useState(minutes[0]);
-
-  const handleHourChange = direction => {
-    const currentIndex = hours.indexOf(selectedHour);
-    const newIndex = (currentIndex + direction + hours.length) % hours.length;
-    setSelectedHour(hours[newIndex]);
-    onChange(`${hours[newIndex]}:${selectedMinute}`);
+  const formatTime = time => {
+    return time.replace(':', '  :  ');
   };
 
-  const handleMinuteChange = direction => {
-    const currentIndex = minutes.indexOf(selectedMinute);
-    const newIndex =
-      (currentIndex + direction + minutes.length) % minutes.length;
-    setSelectedMinute(minutes[newIndex]);
-    onChange(`${selectedHour}:${minutes[newIndex]}`);
+  const toggleFilter = () => {
+    setClockPickerOpen(!isClockPickerOpen);
   };
+
+  const handleTimeClick = time => {
+    setSelectedTime(time);
+    setClockPickerOpen(false);
+    onChange(time);
+  };
+
+  const handleClickOutside = event => {
+    if (timeRef.current && !timeRef.current.contains(event.target)) {
+      setClockPickerOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <TimePickerContainer>
-      <div>
-        <ArrowButton onClick={() => handleHourChange(-1)}>&#9650;</ArrowButton>
-        <TimeList>
-          {hours.map((hour, index) => (
-            <TimeItem
-              key={index}
-              style={{
-                backgroundColor:
-                  hour === selectedHour ? '#e0e0e0' : 'transparent',
-              }}
-              onClick={() => {
-                setSelectedHour(hour);
-                onChange(`${hour}:${selectedMinute}`);
-              }}
-            >
-              {hour}
-            </TimeItem>
-          ))}
-        </TimeList>
-        <ArrowButton onClick={() => handleHourChange(1)}>&#9660;</ArrowButton>
-      </div>
-      <div>
-        <ArrowButton onClick={() => handleMinuteChange(-1)}>
-          &#9650;
-        </ArrowButton>
-        <TimeList>
-          {minutes.map((minute, index) => (
-            <TimeItem
-              key={index}
-              style={{
-                backgroundColor:
-                  minute === selectedMinute ? '#e0e0e0' : 'transparent',
-              }}
-              onClick={() => {
-                setSelectedMinute(minute);
-                onChange(`${selectedHour}:${minute}`);
-              }}
-            >
-              {minute}
-            </TimeItem>
-          ))}
-        </TimeList>
-        <ArrowButton onClick={() => handleMinuteChange(1)}>&#9660;</ArrowButton>
-      </div>
-    </TimePickerContainer>
+    <TimePickerWrapper onClick={toggleFilter}>
+      <PickerContainer>
+        <PickerTitle>
+          <Label>{selectedTime}</Label>
+          <ClockIcon
+            src={`${IMAGE_BASE_URL}/svg/clock.svg`}
+            width="20"
+            height="20"
+            alt="arrow"
+          />
+        </PickerTitle>
+      </PickerContainer>
+      {isClockPickerOpen && (
+        <OptionsList>
+          <OptionsTitle>Meeting time</OptionsTitle>
+          <TimeListsContainer>
+            <TimeList>
+              {times.map((time, index) => (
+                <TimeItem key={index} onClick={() => handleTimeClick(time)}>
+                  {formatTime(time)}
+                </TimeItem>
+              ))}
+            </TimeList>
+          </TimeListsContainer>
+        </OptionsList>
+      )}
+    </TimePickerWrapper>
   );
 };
 
-export default CustomTimePicker;
+export default TimePicker;

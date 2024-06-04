@@ -2,8 +2,8 @@ import { FavoritesList } from 'components/FavoritesList/FavoritesList';
 
 export default function Favorites() {
   return (
-    <div>
+    <section className="favorites">
       <FavoritesList />
-    </div>
+    </section>
   );
 }
