@@ -5,6 +5,7 @@ import { theme } from './vars.js';
 import InterRegular from '../src/fonts/Inter-Regular.ttf';
 import InterMedium from '../src/fonts/Inter-Medium.ttf';
 import InterBold from '../src/fonts/Inter-Bold.ttf';
+import { adaptive } from 'utils/adaptive.js';
 
 export const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -85,4 +86,77 @@ body{
     background: #F3F3F3;
     min-height: 100vh;
     height: 100%;
-    }`;
+    }
+    
+    /* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  right: 36px;
+  top: 36px;
+
+  ${adaptive('top', 26, 13, 0)}
+  ${adaptive('right', 26, 13, 0)}
+  ${adaptive('width', 43, 35, 0)}
+  ${adaptive('height', 25, 20, 0)}
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #a90000;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+    top: -25px !important;
+    right: 20px !important;
+  height: 36px !important;
+  width: 36px !important;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  /* background: #101010; */
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+    
+   ${adaptive('margin-top', -50, -30, 0)}
+  background: #fff;
+  padding: 70px 20px;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  /* background: rgba(0, 0, 0, 0.3); */
+  width: unset !important;
+}`;

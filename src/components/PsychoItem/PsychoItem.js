@@ -28,6 +28,7 @@ import {
   PsychoAvatar,
   RatingDecor,
   RatingPriceContainer,
+  RatingTitle,
   ReviewAvatar,
   ReviewAvatarLetter,
   ReviewItem,
@@ -179,7 +180,7 @@ export const PsychoItem = ({ psychologist, onAppointmentClick }) => {
               width="16"
               height="16"
             />
-            <p>Rating: {rating}</p>
+            <RatingTitle>Rating: {rating}</RatingTitle>
           </FlexRating>
           <RatingDecor>|</RatingDecor>
           <PriceContainer>

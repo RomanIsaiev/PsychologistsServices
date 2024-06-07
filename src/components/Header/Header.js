@@ -5,6 +5,7 @@ import { Login } from 'components/Login/Login';
 import { Navigation } from 'components/Navigation/Navigation';
 import { Signup } from 'components/Singup/Singup';
 import { auth } from 'api/firebase/firebase';
+import { slide as Menu } from 'react-burger-menu';
 import {
   AuthBox,
   ButtonLoginLogout,
@@ -12,7 +13,8 @@ import {
   ButtonsBox,
   HeaderStyled,
   Logo,
-  NavBox,
+  LogoMobile,
+  NavigationAuthContainer,
   UserAvatar,
   UserBox,
   UserName,
@@ -27,6 +29,18 @@ export const Header = ({ openModal, closeModal }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [currentUser, setCurrentUser] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1100);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1100);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -57,19 +71,90 @@ export const Header = ({ openModal, closeModal }) => {
 
   const isHomePage = location.pathname === '/';
 
+  const isMenuOpen = function (state) {
+    return state.isOpen;
+  };
+
   return (
     <HeaderStyled $isHomePage={isHomePage}>
       <div className="container">
-        <div>
-          <NavBox>
+        {!isMobile && (
+          <NavigationAuthContainer>
             <Logo to="/">
               psychologists<span>.</span>
               <span>services</span>
             </Logo>
-
             <Navigation currentUser={currentUser} />
+            {currentUser ? (
+              <AuthBox>
+                <UserBox>
+                  <UserAvatar
+                    src={
+                      currentUser.photoURL ||
+                      `${IMAGE_BASE_URL}/default/default-avatar.png`
+                    }
+                    alt="User Avatar"
+                    width="40"
+                    height="40"
+                  />
+                  <UserName>{currentUser.displayName}</UserName>
+                </UserBox>
+                <div>
+                  <ButtonLoginLogout
+                    type="button"
+                    onClick={() => {
+                      handleLogout();
+                    }}
+                  >
+                    Log out
+                  </ButtonLoginLogout>
+                </div>
+              </AuthBox>
+            ) : (
+              <ButtonsBox>
+                <ButtonLoginLogout
+                  type="button"
+                  onClick={() => {
+                    openLoginModal();
+                  }}
+                >
+                  Log in
+                </ButtonLoginLogout>
+                <ButtonRegister
+                  type="button"
+                  onClick={() => {
+                    openRegistrationModal();
+                  }}
+                >
+                  Registration
+                </ButtonRegister>
+              </ButtonsBox>
+            )}
+          </NavigationAuthContainer>
+        )}
 
-            <div>
+        <LogoMobile to="/">
+          psychologists<span>.</span>
+          <span>services</span>
+        </LogoMobile>
+        {isMobile && (
+          <Menu
+            right
+            onStateChange={isMenuOpen}
+            pageWrapId={'page-wrap'}
+            outerContainerId={'outer-container'}
+            customBurgerIcon={
+              <img
+                src={`${IMAGE_BASE_URL}/svg/hamburger.svg`}
+                alt="mobile menu"
+              />
+            }
+            customCrossIcon={
+              <img src={`${IMAGE_BASE_URL}/svg/close-modal.svg`} alt="close" />
+            }
+          >
+            <NavigationAuthContainer>
+              <Navigation currentUser={currentUser} />
               {currentUser ? (
                 <AuthBox>
                   <UserBox>
@@ -85,24 +170,39 @@ export const Header = ({ openModal, closeModal }) => {
                     <UserName>{currentUser.displayName}</UserName>
                   </UserBox>
                   <div>
-                    <ButtonLoginLogout type="button" onClick={handleLogout}>
+                    <ButtonLoginLogout
+                      type="button"
+                      onClick={() => {
+                        handleLogout();
+                      }}
+                    >
                       Log out
                     </ButtonLoginLogout>
                   </div>
                 </AuthBox>
               ) : (
                 <ButtonsBox>
-                  <ButtonLoginLogout type="button" onClick={openLoginModal}>
-                    Log in
+                  <ButtonLoginLogout
+                    type="button"
+                    onClick={() => {
+                      openLoginModal();
+                    }}
+                  >
+                    Login
                   </ButtonLoginLogout>
-                  <ButtonRegister type="button" onClick={openRegistrationModal}>
+                  <ButtonRegister
+                    type="button"
+                    onClick={() => {
+                      openRegistrationModal();
+                    }}
+                  >
                     Registration
                   </ButtonRegister>
                 </ButtonsBox>
               )}
-            </div>
-          </NavBox>
-        </div>
+            </NavigationAuthContainer>
+          </Menu>
+        )}
       </div>
     </HeaderStyled>
   );

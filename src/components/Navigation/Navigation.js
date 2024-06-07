@@ -1,9 +1,9 @@
-import { Nav, StyledNavLink } from './Navigation.styled';
+import { Nav, NavList, StyledNavLink } from './Navigation.styled';
 
 export const Navigation = ({ currentUser }) => {
   return (
     <Nav>
-      <ul>
+      <NavList>
         <li>
           <StyledNavLink to="/" activeclassname="active">
             Home
@@ -21,7 +21,7 @@ export const Navigation = ({ currentUser }) => {
             </StyledNavLink>
           </li>
         )}
-      </ul>
+      </NavList>
     </Nav>
   );
 };

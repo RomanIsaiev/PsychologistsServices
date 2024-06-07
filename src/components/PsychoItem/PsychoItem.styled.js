@@ -184,7 +184,7 @@ export const RatingPriceContainer = styled.div`
   left: 50%;
 
   transform: translate(-50%);
-  ${adaptive('width', 450, 300, 0)}
+  ${adaptive('width', 450, 320, 0)}
 
   display: flex;
   align-items: center;
@@ -207,6 +207,15 @@ export const RatingDecor = styled.span`
   @media screen and (min-width: 768px) {
     display: block;
   }
+`;
+
+export const RatingTitle = styled.p`
+  color: #191a15;
+  font-family: Inter;
+  ${adaptive('font-size', 16, 14, 0)}
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
 `;
 
 export const FlexRating = styled.div`

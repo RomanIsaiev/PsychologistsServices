@@ -3,42 +3,61 @@ import styled from 'styled-components';
 import { adaptive } from 'utils/adaptive';
 import { theme } from 'vars';
 
-export const Nav = styled.nav`
-  ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+export const NavList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    ${adaptive('gap', 40, 20, 0)}
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  margin-bottom: 50px;
+
+  ${adaptive('gap', 40, 20, 0)}
+
+  @media screen and (min-width: 1100px) {
+    flex-direction: row;
+    margin-bottom: 0;
   }
+`;
 
+export const Nav = styled.nav`
   li {
-    margin-right: 10px;
+    /* margin-right: 10px; */
     position: relative;
-    padding-bottom: 5px;
+    /* padding-bottom: 10px; */
   }
 
   .active {
     &::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 50%;
-      width: 8px;
-      height: 8px;
+      bottom: 5px;
+      left: -15px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background-color: ${theme.color.orange};
 
-      transform: translate(-50%);
+      @media screen and (min-width: 1100px) {
+        bottom: -12px;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        transform: translate(-50%);
+      }
     }
   }
 `;
 
+export const NavListItem = styled.li``;
+
 export const StyledNavLink = styled(NavLink)`
   color: #191a15;
   font-family: 'Inter';
-  ${adaptive(' font-size', 16, 12, 0)}
+  ${adaptive(' font-size', 16, 16, 0)}
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 125% */
