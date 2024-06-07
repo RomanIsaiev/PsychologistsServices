@@ -1,17 +1,67 @@
 import styled from 'styled-components';
+import { adaptive } from 'utils/adaptive';
 import { theme } from 'vars';
+
+export const PsychoStyledList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+
+  ${adaptive('margin-bottom', 64, 32, 0)}
+`;
 
 export const Item = styled.li`
   border-radius: 24px;
   background: #fbfbfb;
+
+  /* ${adaptive('width', 1184, 345, 0)} */
+  width: 100%;
+  margin: 0 auto;
 `;
 
-export const FlexWrapper = styled.div`
+export const ItemContainer = styled.div`
   position: relative;
-
-  padding: 24px;
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+
+  ${adaptive('padding', 24, 16, 0)}
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    ${adaptive('gap', 24, 16, 0)}
+  }
+`;
+
+export const AvatarContainer = styled.div`
+  ${adaptive('padding-top', 0, 30, 0)}
+
+  display: flex;
+  align-items: center;
+  ${adaptive('gap', 24, 12, 0)}
+
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+`;
+
+export const MobilePsychoContainer = styled.div`
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const DesktopPsychoContainer = styled.div`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 `;
 
 export const AvatarWrapper = styled.div`
@@ -30,6 +80,9 @@ export const PsychoAvatar = styled.img`
   border-radius: 15px;
   transform: translate(-50%, -50%);
   z-index: 1;
+
+  width: 96px;
+  height: 96px;
 `;
 
 export const OnlineIcon = styled.img`
@@ -37,13 +90,16 @@ export const OnlineIcon = styled.img`
   right: 14px;
   top: 9px;
 
+  width: 14px;
+  height: 14px;
+
   z-index: 2;
 `;
 
 export const CardTitle = styled.span`
   color: #8a8a89;
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
@@ -54,13 +110,16 @@ export const CardTitle = styled.span`
 export const Name = styled.h3`
   color: ${theme.color.black};
   font-family: Inter;
-  font-size: 24px;
+  ${adaptive('font-size', 24, 18, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 100% */
 
   margin-bottom: 24px;
+  ${adaptive('margin-bottom', 24, 12, 0)}
 `;
+
+// Expertise
 
 export const ExpertiseList = styled.ul`
   display: flex;
@@ -68,13 +127,13 @@ export const ExpertiseList = styled.ul`
   align-items: center;
   gap: 4px;
 
-  margin-bottom: 24px;
+  ${adaptive('margin-bottom', 24, 12, 0)}
 `;
 
 export const ExpertiseItem = styled.li`
   color: #8a8a89;
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
@@ -88,15 +147,17 @@ export const ExpertiseItem = styled.li`
   background: #f3f3f3;
 `;
 
+// DESC
+
 export const Desc = styled.p`
   color: rgba(25, 26, 21, 0.5);
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 125% */
 
-  margin-bottom: 14px;
+  ${adaptive('margin-bottom', 14, 8, 0)}
 `;
 
 export const ExpendedBtn = styled.button`
@@ -104,42 +165,78 @@ export const ExpendedBtn = styled.button`
 
   color: #191a15;
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
-  text-decoration-line: underline;
 
+  text-decoration-line: underline;
   background-color: inherit;
   border: none;
+  padding: 0;
 `;
+
+// RATING PRICE
 
 export const RatingPriceContainer = styled.div`
   position: absolute;
-  top: 24px;
-  right: 24px;
+  ${adaptive('top', 24, 12, 0)}
+  left: 50%;
+
+  transform: translate(-50%);
+  ${adaptive('width', 450, 300, 0)}
 
   display: flex;
   align-items: center;
+  justify-content: center;
+
+  ${adaptive('gap', 8, 4, 0)}
+
+  @media screen and (min-width: 500px) {
+    ${adaptive('right', 24, 12, 0)}
+    left: unset;
+    width: unset;
+    transform: unset;
+    justify-content: unset;
+  }
+`;
+
+export const RatingDecor = styled.span`
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 `;
 
 export const FlexRating = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  ${adaptive('gap', 8, 4, 0)}
 
-  margin-right: 16px;
+  margin-right: 0;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 16px;
+  }
+`;
+
+export const StarIcon = styled.img`
+  ${adaptive('width', 16, 14, 0)}
+  ${adaptive('height', 16, 14, 0)}
 `;
 
 export const PriceContainer = styled.div`
-  margin-left: 16px;
-  margin-right: 28px;
+  @media screen and (min-width: 768px) {
+    margin-left: 16px;
+    margin-right: 28px;
+  }
 `;
 
 export const Price = styled.p`
   color: #191a15;
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
@@ -155,8 +252,10 @@ export const FavoriteBtn = styled.button`
   border: none;
 `;
 
+// REVIEWS
+
 export const ReviewWrapper = styled.ul`
-  margin-bottom: 40px;
+  ${adaptive('margin-bottom', 40, 20, 0)}
 `;
 
 export const ReviewItem = styled.li`
@@ -197,7 +296,7 @@ export const ReviewAvatarLetter = styled.span`
 export const ReviewUserName = styled.p`
   color: #191a15;
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 125% */
@@ -214,16 +313,19 @@ export const ReviewUserRatingContainer = styled.div`
 export const Comment = styled.p`
   color: rgba(25, 26, 21, 0.5);
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 125% */
 `;
 
 export const AppoBtn = styled.button`
+  display: block;
+  margin: 0 auto;
+
   color: #fbfbfb;
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 125% */
@@ -236,4 +338,8 @@ export const AppoBtn = styled.button`
 
   border-radius: 30px;
   background: #fc832c;
+
+  @media screen and (min-width: 500px) {
+    margin: 0 0;
+  }
 `;

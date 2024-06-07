@@ -13,7 +13,9 @@ import {
   HeaderStyled,
   Logo,
   NavBox,
+  UserAvatar,
   UserBox,
+  UserName,
 } from './Header.styled';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/auth/authReducer';
@@ -71,7 +73,7 @@ export const Header = ({ openModal, closeModal }) => {
               {currentUser ? (
                 <AuthBox>
                   <UserBox>
-                    <img
+                    <UserAvatar
                       src={
                         currentUser.photoURL ||
                         `${IMAGE_BASE_URL}/default/default-avatar.png`
@@ -80,7 +82,7 @@ export const Header = ({ openModal, closeModal }) => {
                       width="40"
                       height="40"
                     />
-                    <span> {currentUser.displayName}</span>
+                    <UserName>{currentUser.displayName}</UserName>
                   </UserBox>
                   <div>
                     <ButtonLoginLogout type="button" onClick={handleLogout}>

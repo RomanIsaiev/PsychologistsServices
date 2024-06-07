@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const PsychoStyledList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-
-  margin-bottom: 64px;
-`;
-
 export const LoadMoreBtn = styled.button`
   display: block;
   font-family: Inter;

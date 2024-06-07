@@ -8,9 +8,10 @@ import {
 
 import { PsychoItem } from '../PsychoItem/PsychoItem';
 import Filter from 'components/Filter/Filter';
-import { LoadMoreBtn, PsychoStyledList } from './PsychoList.styled';
+import { LoadMoreBtn } from './PsychoList.styled';
 import { Modal } from 'components/Modal/Modal';
 import { AppointmentForm } from 'components/AppointmentForm/AppointmentForm';
+import { PsychoStyledList } from 'components/PsychoItem/PsychoItem.styled';
 
 export const PsychoList = () => {
   const dispatch = useDispatch();

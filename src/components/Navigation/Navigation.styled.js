@@ -1,14 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { adaptive } from 'utils/adaptive';
 import { theme } from 'vars';
 
 export const Nav = styled.nav`
   ul {
+    display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    gap: 40px;
+
+    ${adaptive('gap', 40, 20, 0)}
   }
 
   li {
@@ -36,7 +38,7 @@ export const Nav = styled.nav`
 export const StyledNavLink = styled(NavLink)`
   color: #191a15;
   font-family: 'Inter';
-  font-size: 16px;
+  ${adaptive(' font-size', 16, 12, 0)}
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 125% */

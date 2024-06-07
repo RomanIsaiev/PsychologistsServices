@@ -2,12 +2,14 @@ import {
   ExpBlock,
   ExpContainer,
   ExpIcon,
+  ExpIconBox,
   ExpInfoBox,
   ExpNumber,
   ExpText,
   HomeDesc,
   HomeFlex,
   HomeTitle,
+  MainImage,
   PeopleIcon,
   PeopleIconBox,
   QuestionIcon,
@@ -38,14 +40,14 @@ export const HomePage = () => {
           </div>
           <ExpContainer>
             <ExpBlock>
-              <ExpIcon>
-                <img
+              <ExpIconBox>
+                <ExpIcon
                   src={`${IMAGE_BASE_URL}/svg/check-mark-orange.svg`}
                   alt="check-mark"
                   width="30"
                   height="30"
                 />
-              </ExpIcon>
+              </ExpIconBox>
               <ExpInfoBox>
                 <ExpText>Experienced psychologists</ExpText>
                 <ExpNumber>15,000</ExpNumber>
@@ -74,7 +76,7 @@ export const HomePage = () => {
                 ${IMAGE_BASE_URL}/homepage/woman-desktop-2x.jpg 2x`}
                   media="(min-width: 320px)"
                 />
-                <img
+                <MainImage
                   src={`${IMAGE_BASE_URL}/homepage/woman-desktop-1x.jpg`}
                   alt="women"
                   width="464"

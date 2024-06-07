@@ -6,10 +6,12 @@ import {
 } from '../../redux/psychologists/favoriteReducer';
 import {
   AppoBtn,
+  AvatarContainer,
   AvatarWrapper,
   CardTitle,
   Comment,
   Desc,
+  DesktopPsychoContainer,
   ExpendedBtn,
   ExpertiseItem,
   ExpertiseList,
@@ -17,11 +19,14 @@ import {
   FlexRating,
   FlexWrapper,
   Item,
+  ItemContainer,
+  MobilePsychoContainer,
   Name,
   OnlineIcon,
   Price,
   PriceContainer,
   PsychoAvatar,
+  RatingDecor,
   RatingPriceContainer,
   ReviewAvatar,
   ReviewAvatarLetter,
@@ -30,6 +35,7 @@ import {
   ReviewUserName,
   ReviewUserRatingContainer,
   ReviewWrapper,
+  StarIcon,
 } from './PsychoItem.styled';
 import { toast } from 'react-toastify';
 
@@ -82,8 +88,8 @@ export const PsychoItem = ({ psychologist, onAppointmentClick }) => {
 
   return (
     <Item>
-      <FlexWrapper>
-        <div>
+      <ItemContainer>
+        <AvatarContainer>
           <AvatarWrapper>
             <OnlineIcon
               src={`${IMAGE_BASE_URL}/svg/online.svg`}
@@ -98,10 +104,16 @@ export const PsychoItem = ({ psychologist, onAppointmentClick }) => {
               alt="psychologistphoto"
             />
           </AvatarWrapper>
-        </div>
+          <MobilePsychoContainer>
+            <CardTitle>Psychologist</CardTitle>
+            <Name>{name}</Name>
+          </MobilePsychoContainer>
+        </AvatarContainer>
         <div>
-          <CardTitle>Psychologist</CardTitle>
-          <Name>{name}</Name>
+          <DesktopPsychoContainer>
+            <CardTitle>Psychologist</CardTitle>
+            <Name>{name}</Name>
+          </DesktopPsychoContainer>
           <ExpertiseList>
             <ExpertiseItem>
               Experience: <span>{experience}</span>
@@ -161,7 +173,7 @@ export const PsychoItem = ({ psychologist, onAppointmentClick }) => {
         </div>
         <RatingPriceContainer>
           <FlexRating>
-            <img
+            <StarIcon
               src={`${IMAGE_BASE_URL}/svg/star.svg`}
               alt="star"
               width="16"
@@ -169,7 +181,7 @@ export const PsychoItem = ({ psychologist, onAppointmentClick }) => {
             />
             <p>Rating: {rating}</p>
           </FlexRating>
-          <span>|</span>
+          <RatingDecor>|</RatingDecor>
           <PriceContainer>
             <Price>
               Price / 1 hour: <span>{price_per_hour}$</span>
@@ -195,7 +207,7 @@ export const PsychoItem = ({ psychologist, onAppointmentClick }) => {
             </FavoriteBtn>
           </div>
         </RatingPriceContainer>
-      </FlexWrapper>
+      </ItemContainer>
     </Item>
   );
 };

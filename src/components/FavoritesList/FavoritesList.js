@@ -5,9 +5,10 @@ import { PsychoItem } from 'components/PsychoItem/PsychoItem';
 import Filter from 'components/Filter/Filter';
 import { NoFavorite } from './FavoritesList.styled';
 import { setSortBy } from '../../redux/psychologists/psychoReducer';
-import { PsychoStyledList } from 'components/PsychoList/PsychoList.styled';
+
 import { Modal } from 'components/Modal/Modal';
 import { AppointmentForm } from 'components/AppointmentForm/AppointmentForm';
+import { PsychoStyledList } from 'components/PsychoItem/PsychoItem.styled';
 
 export const FavoritesList = () => {
   const dispatch = useDispatch();

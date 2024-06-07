@@ -59,8 +59,6 @@ body{
 
     img {
         display: block;
-        max-width: 100%;
-        height: auto;
     }
 
     button {
@@ -68,9 +66,8 @@ body{
     }
     
     .container {
-        max-width: ${theme.breakpoint.xl};
         width: 100%;
-        padding: 0 128px;
+        padding: 0 calc(15px + (128 - 15) * ((100vw - 375px) / (1440 - 375)));
         margin: 0 auto;
     }
     
