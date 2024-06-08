@@ -10,12 +10,14 @@ import {
   CommentInput,
   NameContainer,
   NameSubtitle,
+  PhoneContainer,
   PhoneInput,
   PhoneTimeContainer,
   PsychologistContainer,
   PsychologistImage,
   PsychologistName,
   SendBtn,
+  TimeContainer,
 } from './AppointmentForm.styled';
 import TimePicker from 'components/Custom/TimePicker/TimePicker';
 
@@ -83,24 +85,23 @@ export const AppointmentForm = ({ psychologist, onClose }) => {
           {errors.name && <AttentionForm>{errors.name.message}</AttentionForm>}
         </div>
         <PhoneTimeContainer>
-          <div>
+          <PhoneContainer>
             <PhoneInput
               type="text"
               {...register('phone')}
-              placeholder="+380"
               value={phoneValue}
               onChange={handlePhoneChange}
             />
             {errors.phone && (
               <AttentionForm>{errors.phone.message}</AttentionForm>
             )}
-          </div>
-          <div>
+          </PhoneContainer>
+          <TimeContainer>
             <TimePicker onChange={handleTimeChange} />
             {errors.time && (
               <AttentionForm>{errors.time.message}</AttentionForm>
             )}
-          </div>
+          </TimeContainer>
         </PhoneTimeContainer>
         <div>
           <Input type="email" {...register('email')} placeholder="Email" />

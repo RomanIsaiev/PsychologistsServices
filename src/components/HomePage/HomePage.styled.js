@@ -4,7 +4,7 @@ import { adaptive } from 'utils/adaptive';
 import { theme } from 'vars';
 
 export const SectionHome = styled.section`
-  ${adaptive('padding-top', 78, 21, 0)}
+  ${adaptive('padding-top', 156, 78, 0)}
 `;
 
 export const HomeFlex = styled.div`
@@ -43,7 +43,6 @@ export const HomeDesc = styled.p`
   letter-spacing: -0.36px;
 
   ${adaptive('width', 510, 155, 0)}
-
   ${adaptive('margin-bottom', 40, 20, 0)}
 `;
 

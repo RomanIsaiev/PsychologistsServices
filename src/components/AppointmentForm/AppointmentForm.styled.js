@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { adaptive } from 'utils/adaptive';
 import { theme } from 'vars';
 
 export const PsychologistContainer = styled.div`
@@ -7,6 +8,7 @@ export const PsychologistContainer = styled.div`
   gap: 14px;
 
   margin-bottom: 40px;
+  ${adaptive('margin-bottom', 40, 20, 0)}
 `;
 
 export const PsychologistImage = styled.img`
@@ -32,6 +34,7 @@ export const PsychologistName = styled.h3`
   color: #191a15;
   font-family: Inter;
   font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
@@ -39,46 +42,67 @@ export const PsychologistName = styled.h3`
 
 export const PhoneTimeContainer = styled.div`
   display: flex;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 16px;
   margin-bottom: 16px;
   gap: 8px;
 `;
 
-export const PhoneInput = styled.input`
-  padding: 16px 18px;
-  border-radius: 12px;
-  border: 1px solid rgba(25, 26, 21, 0.1);
-  background: ${theme.color.white};
-
-  width: 232px;
-  height: 52px;
-
-  &::placeholder {
-    color: ${theme.color.black};
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px; /* 125% */
-
-    opacity: 1;
+export const PhoneContainer = styled.div`
+  width: 100%;
+  @media screen and (min-width: 1280px) {
+    width: 49.2%;
   }
 `;
 
-export const TimeInput = styled.input`
-  padding: 16px 18px;
+export const TimeContainer = styled.div`
+  width: 100%;
+  @media screen and (min-width: 1280px) {
+    width: 49.2%;
+  }
+`;
+
+export const PhoneInput = styled.input`
+  padding: calc(8px + (16 - 8) * ((100vw - 375px) / (1440 - 375)))
+    calc(9px + (18 - 9) * ((100vw - 375px) / (1440 - 375)));
   border-radius: 12px;
   border: 1px solid rgba(25, 26, 21, 0.1);
   background: ${theme.color.white};
 
-  width: 232px;
-  height: 52px;
+  color: ${theme.color.black};
+  font-family: Inter;
+  ${adaptive('font-size', 16, 14, 0)}
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+
+  width: 100%;
+
+  /* ${adaptive('width', 1072, 264, 0)} */
+  /* ${adaptive('width', 232, 116, 0)} */
+  /* width: 150%; */
+  /* height: 52px; */
+  /* ${adaptive('height', 52, 26, 0)} */
+`;
+
+export const TimeInput = styled.input`
+  padding: calc(8px + (16 - 8) * ((100vw - 375px) / (1440 - 375)))
+    calc(9px + (18 - 9) * ((100vw - 375px) / (1440 - 375)));
+  border-radius: 12px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  background: ${theme.color.white};
+
+  /* min-width: 50%; */
+  /* ${adaptive('width', 232, 116, 0)} */
+  /* height: 52px; */
+  /* ${adaptive('height', 52, 26, 0)} */
 
   &::placeholder {
     color: ${theme.color.black};
     font-family: Inter;
     font-size: 16px;
+    ${adaptive('font-size', 16, 14, 0)}
     font-style: normal;
     font-weight: 400;
     line-height: 20px; /* 125% */
@@ -90,21 +114,26 @@ export const TimeInput = styled.input`
 export const CommentInput = styled.textarea`
   margin-top: 16px;
 
-  padding: 16px 18px;
+  padding: calc(8px + (16 - 8) * ((100vw - 375px) / (1440 - 375)))
+    calc(9px + (18 - 9) * ((100vw - 375px) / (1440 - 375)));
   border-radius: 12px;
   border: 1px solid rgba(25, 26, 21, 0.1);
   background: ${theme.color.white};
   resize: none;
 
-  width: 472px;
-  height: 116px;
+  width: 100%;
+  /* ${adaptive('width', 472, 236, 0)} */
+  /* height: 116px; */
+  ${adaptive('height', 116, 58, 0)}
 
   margin-bottom: 40px;
+  ${adaptive('margin-bottom', 40, 20, 0)}
 
   &::placeholder {
     color: ${theme.color.black};
     font-family: Inter;
     font-size: 16px;
+    ${adaptive('font-size', 16, 14, 0)}
     font-style: normal;
     font-weight: 400;
     line-height: 20px; /* 125% */
@@ -119,6 +148,7 @@ export const SendBtn = styled.button`
   color: #fbfbfb;
   font-family: Inter;
   font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 125% */
@@ -135,7 +165,7 @@ export const SendBtn = styled.button`
 export const AttentionForm = styled.p`
   color: red;
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 125% */

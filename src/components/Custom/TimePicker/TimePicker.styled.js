@@ -1,13 +1,17 @@
 import styled from 'styled-components';
+import { adaptive } from 'utils/adaptive';
 
 export const TimePickerWrapper = styled.div`
   position: relative;
-
   display: flex;
   align-items: center;
 
-  width: 232px;
-  padding: 16px 18px;
+  width: 100%;
+  /* width: 232px; */
+  /* ${adaptive('width', 1072, 264, 0)} */
+  /* width: 100%; */
+  padding: calc(8px + (16 - 8) * ((100vw - 375px) / (1440 - 375)))
+    calc(9px + (18 - 9) * ((100vw - 375px) / (1440 - 375)));
   border-radius: 12px;
   border: 1px solid rgba(25, 26, 21, 0.1);
 `;
@@ -28,6 +32,7 @@ export const Label = styled.span`
   color: #191a15;
   font-family: Inter;
   font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 125% */
@@ -37,6 +42,9 @@ export const ClockIcon = styled.img`
   position: absolute;
   right: 18px;
   top: 16px;
+
+  ${adaptive('right', 16, 8, 0)}
+  ${adaptive('top', 16, 8, 0)}
 `;
 
 export const OptionsList = styled.div`
@@ -54,8 +62,8 @@ export const OptionsList = styled.div`
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    width: 12px; /* Ширина вертикального скроллбара */
-    height: 12px; /* Высота горизонтального скроллбара */
+    width: 12px;
+    height: 12px;
   }
 
   &::-webkit-scrollbar-track {
@@ -66,7 +74,7 @@ export const OptionsList = styled.div`
   &::-webkit-scrollbar-thumb {
     background: #fc832c;
     border-radius: 10px;
-    border: 3px solid #f1f1f1; /* Обводка вокруг ползунка, создающая эффект пространства между треком и ползунком */
+    border: 3px solid #f1f1f1;
   }
 
   &::-webkit-scrollbar-thumb:hover {

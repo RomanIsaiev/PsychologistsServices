@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import { adaptive } from 'utils/adaptive';
 
 export const HeaderStyled = styled.header`
+  position: fixed;
+  z-index: 4;
+
+  width: 100%;
+
   ${adaptive('padding-top', 24, 12, 0)}
   background: ${props => (props.$isHomePage ? '#FBFBFB' : '#F3F3F3')};
 
@@ -16,6 +21,7 @@ export const HeaderStyled = styled.header`
     background: rgba(25, 26, 21, 0.1);
   }
 `;
+
 export const NavBox = styled.div`
   display: flex;
   align-items: center;

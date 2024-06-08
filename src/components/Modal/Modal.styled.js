@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { adaptive } from 'utils/adaptive';
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -16,18 +17,22 @@ export const ModalOverlay = styled.div`
 export const ModalContainer = styled.div`
   background-color: white;
   padding: 64px;
+  ${adaptive('padding', 64, 43, 0)}
   border-radius: 5px;
   position: relative;
 
-  max-width: 600px;
   border-radius: 30px;
   background: #fbfbfb;
+
+  ${adaptive('width', 700, 350, 768)}
 `;
 
 export const CloseButton = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
+  ${adaptive('top', 20, 10, 0)}
+  ${adaptive('right', 20, 10, 0)}
   background: none;
   border: none;
   cursor: pointer;

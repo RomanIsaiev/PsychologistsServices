@@ -73,7 +73,7 @@ body{
     }
     
     .psychologists{
-    padding-top: 64px;
+    padding-top: 128px;
     padding-bottom: 64px;
     background: #F3F3F3;
     min-height: 100vh;
@@ -81,7 +81,7 @@ body{
     }
     
     .favorites{
-    padding-top: 64px;
+    padding-top: 128px;
     padding-bottom: 64px;
     background: #F3F3F3;
     min-height: 100vh;
