@@ -7,9 +7,6 @@ export const TimePickerWrapper = styled.div`
   align-items: center;
 
   width: 100%;
-  /* width: 232px; */
-  /* ${adaptive('width', 1072, 264, 0)} */
-  /* width: 100%; */
   padding: calc(8px + (16 - 8) * ((100vw - 375px) / (1440 - 375)))
     calc(9px + (18 - 9) * ((100vw - 375px) / (1440 - 375)));
   border-radius: 12px;
@@ -31,7 +28,6 @@ export const PickerTitle = styled.div`
 export const Label = styled.span`
   color: #191a15;
   font-family: Inter;
-  font-size: 16px;
   ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 400;
@@ -89,7 +85,7 @@ export const OptionsList = styled.div`
 export const OptionsTitle = styled.p`
   color: #191a15;
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
@@ -113,7 +109,7 @@ export const TimeItem = styled.li`
   color: rgba(25, 26, 21, 0.3);
   text-align: center;
   font-family: Inter;
-  font-size: 16px;
+  ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 125% */

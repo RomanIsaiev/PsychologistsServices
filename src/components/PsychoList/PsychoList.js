@@ -8,10 +8,11 @@ import {
 
 import { PsychoItem } from '../PsychoItem/PsychoItem';
 import Filter from 'components/Filter/Filter';
-import { LoadMoreBtn } from './PsychoList.styled';
+import { LoadMoreBtn, LoaderContainer } from './PsychoList.styled';
 import { Modal } from 'components/Modal/Modal';
 import { AppointmentForm } from 'components/AppointmentForm/AppointmentForm';
 import { PsychoStyledList } from 'components/PsychoItem/PsychoItem.styled';
+import { DotLoader } from 'react-spinners';
 
 export const PsychoList = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,11 @@ export const PsychoList = () => {
   };
 
   if (status === 'loading') {
-    return <div>Loading...</div>;
+    return (
+      <LoaderContainer>
+        <DotLoader color="#FC832C" loading />
+      </LoaderContainer>
+    );
   }
 
   if (status === 'failed') {
