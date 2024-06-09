@@ -14,8 +14,6 @@ export const PsychoStyledList = styled.ul`
 export const Item = styled.li`
   border-radius: 24px;
   background: #fbfbfb;
-
-  /* ${adaptive('width', 1184, 345, 0)} */
   width: 100%;
   margin: 0 auto;
 `;
@@ -119,8 +117,6 @@ export const Name = styled.h3`
   ${adaptive('margin-bottom', 24, 12, 0)}
 `;
 
-// Expertise
-
 export const ExpertiseList = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -146,8 +142,6 @@ export const ExpertiseItem = styled.li`
   border-radius: 24px;
   background: #f3f3f3;
 `;
-
-// DESC
 
 export const Desc = styled.p`
   color: rgba(25, 26, 21, 0.5);
@@ -175,8 +169,6 @@ export const ExpendedBtn = styled.button`
   border: none;
   padding: 0;
 `;
-
-// RATING PRICE
 
 export const RatingPriceContainer = styled.div`
   position: absolute;
@@ -260,8 +252,6 @@ export const FavoriteBtn = styled.button`
   background: none;
   border: none;
 `;
-
-// REVIEWS
 
 export const ReviewWrapper = styled.ul`
   ${adaptive('margin-bottom', 40, 20, 0)}

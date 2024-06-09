@@ -6,8 +6,6 @@ export const PsychologistContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 14px;
-
-  margin-bottom: 40px;
   ${adaptive('margin-bottom', 40, 20, 0)}
 `;
 
@@ -33,7 +31,6 @@ export const NameSubtitle = styled.span`
 export const PsychologistName = styled.h3`
   color: #191a15;
   font-family: Inter;
-  font-size: 16px;
   ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;
@@ -78,12 +75,6 @@ export const PhoneInput = styled.input`
   line-height: 20px; /* 125% */
 
   width: 100%;
-
-  /* ${adaptive('width', 1072, 264, 0)} */
-  /* ${adaptive('width', 232, 116, 0)} */
-  /* width: 150%; */
-  /* height: 52px; */
-  /* ${adaptive('height', 52, 26, 0)} */
 `;
 
 export const TimeInput = styled.input`
@@ -93,15 +84,9 @@ export const TimeInput = styled.input`
   border: 1px solid rgba(25, 26, 21, 0.1);
   background: ${theme.color.white};
 
-  /* min-width: 50%; */
-  /* ${adaptive('width', 232, 116, 0)} */
-  /* height: 52px; */
-  /* ${adaptive('height', 52, 26, 0)} */
-
   &::placeholder {
     color: ${theme.color.black};
     font-family: Inter;
-    font-size: 16px;
     ${adaptive('font-size', 16, 14, 0)}
     font-style: normal;
     font-weight: 400;
@@ -122,17 +107,12 @@ export const CommentInput = styled.textarea`
   resize: none;
 
   width: 100%;
-  /* ${adaptive('width', 472, 236, 0)} */
-  /* height: 116px; */
   ${adaptive('height', 116, 58, 0)}
-
-  margin-bottom: 40px;
   ${adaptive('margin-bottom', 40, 20, 0)}
 
   &::placeholder {
     color: ${theme.color.black};
     font-family: Inter;
-    font-size: 16px;
     ${adaptive('font-size', 16, 14, 0)}
     font-style: normal;
     font-weight: 400;
@@ -147,7 +127,6 @@ export const SendBtn = styled.button`
 
   color: #fbfbfb;
   font-family: Inter;
-  font-size: 16px;
   ${adaptive('font-size', 16, 14, 0)}
   font-style: normal;
   font-weight: 500;

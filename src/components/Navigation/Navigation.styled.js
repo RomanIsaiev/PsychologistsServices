@@ -25,9 +25,7 @@ export const NavList = styled.ul`
 
 export const Nav = styled.nav`
   li {
-    /* margin-right: 10px; */
     position: relative;
-    /* padding-bottom: 10px; */
   }
 
   .active {
@@ -57,7 +55,7 @@ export const NavListItem = styled.li``;
 export const StyledNavLink = styled(NavLink)`
   color: #191a15;
   font-family: 'Inter';
-  ${adaptive(' font-size', 16, 16, 0)}
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 125% */

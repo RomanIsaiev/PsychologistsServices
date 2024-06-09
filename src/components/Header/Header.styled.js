@@ -16,7 +16,6 @@ export const HeaderStyled = styled.header`
     display: block;
     width: 100%;
     height: 1px;
-    margin-top: 26px;
     ${adaptive('margin-top', 26, 13, 0)}
     background: rgba(25, 26, 21, 0.1);
   }
@@ -141,8 +140,6 @@ export const ButtonRegister = styled(BaseButton)`
 `;
 
 export const UserAvatar = styled.img`
-  ${adaptive('width', 40, 20, 0)}
-  ${adaptive('height', 40, 20, 0)}
   width: 40px;
   height: 40px;
 `;

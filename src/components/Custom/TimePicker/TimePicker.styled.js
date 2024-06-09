@@ -36,9 +36,6 @@ export const Label = styled.span`
 
 export const ClockIcon = styled.img`
   position: absolute;
-  right: 18px;
-  top: 16px;
-
   ${adaptive('right', 16, 8, 0)}
   ${adaptive('top', 16, 8, 0)}
 `;

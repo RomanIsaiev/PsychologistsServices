@@ -1,4 +1,3 @@
-// const maxWidth = 1440;
 const maxWidthContainer = 1440;
 
 export const adaptive = (property, startSize, minSize, type) => {
