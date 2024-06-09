@@ -73,7 +73,7 @@ export const StartButton = styled(NavLink)`
   width: 100%;
 
   padding: calc(12px + (18 - 12) * ((100vw - 375px) / (1440 - 375)))
-    calc(24px + (48 - 24) * ((100vw - 375px) / (1440 - 375)));
+    calc(12px + (24 - 12) * ((100vw - 375px) / (1440 - 375)));
   border-radius: 30px;
   background: ${theme.color.orange};
 

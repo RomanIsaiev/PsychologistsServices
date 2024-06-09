@@ -1,112 +1,102 @@
-# React homework template
+![HomePage](./src/images/project-preview/HomePage.jpg)
 
-Цей проект був створений за допомогою
-[Create React App](https://github.com/facebook/create-react-app). Для знайомства
-і налаштування додаткових можливостей
-[звернися до документації](https://facebook.github.io/create-react-app/docs/getting-started).
+# Psychologist Services
 
-## Створення репозиторію за шаблоном
+## Project Overview
 
-Використовуй цей репозиторій організації GoIT як шаблон для створення репозиторію
-свого проєкта. Для цього натисни на кнопку `«Use this template»` і вибери опцію
-`«Create a new repository»`, як показано на зображенні.
+"Psychologist Services" is a web application developed for a company offering
+professional psychological services. The application allows users to search,
+sort, add psychologists to favorites, and book consultations. The main goal of
+the project is to simplify the process of finding and selecting a psychologist
+by providing a convenient and intuitive interface.
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+## Pages and Their Content
 
-На наступному кроці відкриється сторінка створення нового репозиторію. Заповни поле
-його імені, переконайся що репозиторій публічний, після чого натисни кнопку
-`«Create repository from template»`.
+1. ### **Home**
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+- **Site Header:** Company name.
+- **Company Slogan:** A brief description of the company's mission.
+- **Get Started Link:** A button that redirects to the "Psychologists" page.
 
-Після того як репозиторій буде створено, необхідно перейти в налаштування
-створеного репозиторію на вкладку `Settings` > `Actions` > `General` як
-показано на зображенні.
+2. ### **Psychologists**
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+- **List of Psychologists:** A list of cards with information about
+  psychologists.
+- **Sorting Filters:** Ability to sort by alphabet, price, and popularity.
+- **Psychologist Cards:** Brief descriptions, ratings, prices, work experience,
+  and other characteristics.
+- **Load More Button:** Load additional psychologist cards on request.
 
-Проскроливши сторінку до самого кінця, у секції `«Workflow permissions»` вибери
-опцію `«Read and write permissions»` і постав галочку в чекбоксі. Це
-необхідно для автоматизації процесу деплою проєкту.
+3. ### **Favorites**
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+- **List of Favorite Psychologists:** Cards of psychologists added to favorites
+  by the user.
+- **Add/Remove Functionality:** Ability to manage favorite psychologists.
 
-Тепер у тебе є особистий репозиторій проекту, зі структурою файлів і папок
-репозиторію-шаблону. Далі працюй із ним як із будь-яким іншим особистим репозиторієм,
-клонуй його собі на комп'ютер, пиши код, роби комміти і відправляй їх на
-GitHub.
+## Technical Specifications
 
-## Підготовка до роботи
+- Authentication: Implemented using Firebase Authentication (registration,
+  login, logout, and retrieving current user data).
+- Data Handling: Storing psychologist data in Firebase Realtime Database.
+- Form Validation: Using react-hook-form and yup for form creation and
+  validation.
+- Sorting and Filtering: Functions to sort and filter the list of psychologists.
+- Local Storage: Using localStorage to store favorite psychologists.
 
-1. Переконайся що на комп'ютері встановлено LTS-версія Node.js.
-   [Завантаж і встанови](https://nodejs.org/en/) її якщо необхідно.
-2. Встанови базові залежності проєкту командою `npm install`.
-3. Запусти режим розробки, виконавши команду `npm start`.
-4. Перейди в браузері за адресою [http://localhost:3000](http://localhost:3000).
-   Ця сторінка буде автоматично перезавантажуватися після збереження змін у файлах проєкту.
+## Features
 
-## Деплой
+- Registration and Login: Users can register and log in to access additional
+  features.
+- View Psychologists: Ability to view and sort the list of psychologists.
+- Add to Favorites: Authenticated users can add psychologists to their
+  favorites.
+- Book a Consultation: Ability to send a request for a personal meeting with a
+  psychologist.
+- Manage Favorites: Manage the list of favorite psychologists (add/remove).
 
-Продакшн версія проєкту буде автоматично проходити лінтинг, збиратися і
-деплоїтися на GitHub Pages, у гілку `gh-pages`, щоразу, коли оновлюється
-гілка `main`. Наприклад, після прямого пушу або прийнятого пул-реквесту. Для цього
-необхідно у файлі `package.json` відредагувати поле `homepage`, замінивши
-`your_username` і `your_repo_name` на свої, і відправити зміни на GitHub.
+## Technologies Used
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
+- Frontend: React, React Router Dom, Styled-components
+- State Management: Redux Toolkit
+- Forms and Validation: React Hook Form, Yup
+- Libraries: Axios, React-toastify, React-spinners, React-burger-menu
+- Authentication and Database: Firebase Authentication, Firebase Realtime
+  Database
+- Build and Deployment: Vite, GitHub Pages, Netlify
 
-Далі необхідно зайти в налаштування GitHub-репозиторію (`Settings` > `Pages`) і
-виставити роздачу продакшн-версії файлів із папки `/root` гілки `gh-pages`, якщо
-це не було зроблено автоматично.
+## Libraries Used
 
-![GitHub Pages settings](./assets/repo-settings.png)
+- @hookform/resolvers
+- @reduxjs/toolkit
+- @testing-library/jest-dom
+- @testing-library/react
+- @testing-library/user-event
+- axios
+- dotenv
+- firebase
+- modern-normalize
+- react
+- react-burger-menu
+- react-dom
+- react-hook-form
+- react-redux
+- react-router-dom
+- react-scripts
+- react-spinners
+- react-toastify
+- redux
+- styled-components
+- web-vitals
+- yup
 
-### Статус деплоя
+The project provides an intuitive interface for searching and selecting
+psychologists, ensuring high interactivity and ease of use. The implemented
+features and technologies make it a modern and reliable tool for users.
 
-Статус деплою крайнього коміту відображається іконкою біля його ідентифікатора.
-
-- **Жовтий колір** - виконується збірка і деплой проєкту.
-- **Зелений колір** - деплой завершився успішно.
-- **Червоний колір** - під час лінтингу, сборки або деплою сталася помилка.
-
-Детальнішу інформацію про статус можна подивитися, клікнувши на іконку, і
-у вікні, що випадає, перейти за посиланням `Details`.
-
-![Deployment status](./assets/deploy-status.png)
-
-### Жива сторінка
-
-Через якийсь час, зазвичай кілька хвилин, живу сторінку можна буде подивитися
-за адресою, вказаною у відредагованій властивості `homepage`. Наприклад, ось
-посилання на живу версію для цього репозиторію
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
-
-Якщо відкривається порожня сторінка, переконайся, що у вкладці `Console` немає помилок
-пов'язаних із неправильними шляхами до CSS і JS файлів проєкту (**404**). Швидше 
-за все у тебе неправильне значення властивості `homepage` у файлі `package.json`.
-
-### Маршрутизація
-
-Якщо додаток використовує бібліотеку `react-router-dom` для маршрутизації,
-необхідно додатково налаштувати компонент `<BrowserRouter>`, передавши у пропе
-`basename` точну назву твого репозиторію. Слеш на початку рядка обов'язковий.
-
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-```
-
-## Як це працює
-
-![How it works](./assets/how-it-works.png)
-
-1. Після кожного пушу в гілку `main` GitHub-репозиторія, запускається спеціальний
-   скрипт (GitHub Action) з файла `.github/workflows/deploy.yml`.
-2. Усі файли репозиторію копіюються на сервер, де проект ініціалізується і
-   проходить лінтинг і збірку перед деплоєм.
-3. Якщо всі кроки пройшли успішно, зібрана продакшн-версія файлів проєкту
-   відправляється в гілку `gh-pages`. В іншому випадку, в лозі виконання
-   скрипта буде вказано в чому проблема.
+![HomePage](./src/images/project-preview/HomePage.jpg)
+![Login](./src/images/project-preview/Login.jpg)
+![Register](./src/images/project-preview/Register.jpg)
+![PsychologistsPage](./src/images/project-preview/PsychoPage1.jpg)
+![Filter](./src/images/project-preview/Filter.jpg)
+![Favorite](./src/images/project-preview/Favorites.jpg)
+![PsychologistsPage](./src/images/project-preview/AppointmentForm.jpg)
