@@ -17,7 +17,6 @@ import {
   ExpertiseList,
   FavoriteBtn,
   FlexRating,
-  FlexWrapper,
   Item,
   ItemContainer,
   MobilePsychoContainer,
