@@ -43,6 +43,8 @@ export const Input = styled.input`
   width: 100%;
   background: ${theme.color.white};
 
+  cursor: pointer;
+
   &::placeholder {
     color: ${theme.color.black};
     font-family: Inter;

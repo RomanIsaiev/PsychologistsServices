@@ -74,6 +74,8 @@ export const PhoneInput = styled.input`
   font-weight: 400;
   line-height: 20px; /* 125% */
 
+  cursor: pointer;
+
   width: 100%;
 `;
 
@@ -83,6 +85,8 @@ export const TimeInput = styled.input`
   border-radius: 12px;
   border: 1px solid rgba(25, 26, 21, 0.1);
   background: ${theme.color.white};
+
+  cursor: pointer;
 
   &::placeholder {
     color: ${theme.color.black};
@@ -105,6 +109,8 @@ export const CommentInput = styled.textarea`
   border: 1px solid rgba(25, 26, 21, 0.1);
   background: ${theme.color.white};
   resize: none;
+
+  cursor: pointer;
 
   width: 100%;
   ${adaptive('height', 116, 58, 0)}
@@ -139,6 +145,13 @@ export const SendBtn = styled.button`
   background: #fc832c;
   width: 100%;
   margin: 0 auto;
+
+  transition: background-color 250ms linear;
+
+  &:hover,
+  &:focus {
+    background-color: #f37113;
+  }
 `;
 
 export const AttentionForm = styled.p`

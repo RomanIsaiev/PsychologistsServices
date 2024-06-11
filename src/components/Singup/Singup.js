@@ -22,6 +22,7 @@ import {
   initializeFavorites,
   setUid,
 } from '../../redux/psychologists/favoriteReducer';
+import { AttentionForm } from 'components/AppointmentForm/AppointmentForm.styled';
 
 const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
@@ -71,10 +72,13 @@ export const Signup = ({ onClose }) => {
         toast.warn('Password should be at least 6 characters long');
       } else if (error.code === 'auth/email-already-in-use') {
         toast.warn('Email is already in use');
+      } else if (error.code === 'auth/invalid-email') {
+        toast.warn('Invalid email address');
+      } else if (error.code === 'auth/operation-not-allowed') {
+        toast.warn('Operation not allowed');
       } else {
-        toast.warn(error.message);
+        toast.warn('Registration failed. Please try again.');
       }
-      console.log(error);
     }
   };
 
@@ -97,7 +101,7 @@ export const Signup = ({ onClose }) => {
             {...register('name')}
             placeholder="Name"
           />
-          {errors.name && <p>{errors.name.message}</p>}
+          {errors.name && <AttentionForm>{errors.name.message}</AttentionForm>}
         </div>
         <div>
           <Input
@@ -106,7 +110,9 @@ export const Signup = ({ onClose }) => {
             {...register('email')}
             placeholder="Email"
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && (
+            <AttentionForm>{errors.email.message}</AttentionForm>
+          )}
         </div>
         <PasswordBox>
           <Input
@@ -132,7 +138,9 @@ export const Signup = ({ onClose }) => {
               />
             )}
           </EyeButton>
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <AttentionForm>{errors.password.message}</AttentionForm>
+          )}
         </PasswordBox>
         <ModalButton type="submit">Sign Up</ModalButton>
       </ModalForm>

@@ -26,6 +26,13 @@ export const NavList = styled.ul`
 export const Nav = styled.nav`
   li {
     position: relative;
+
+    transition: scale 250ms linear;
+
+    &:hover,
+    &:focus {
+      scale: 1.1;
+    }
   }
 
   .active {

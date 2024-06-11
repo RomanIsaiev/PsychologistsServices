@@ -78,6 +78,13 @@ export const Logo = styled(NavLink)`
     color: #191a15;
     font-weight: 600;
   }
+
+  transition: scale 250ms linear;
+
+  &:hover,
+  &:focus {
+    scale: 1.1;
+  }
 `;
 
 export const LogoMobile = styled(NavLink)`

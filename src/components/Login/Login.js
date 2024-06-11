@@ -21,6 +21,8 @@ import {
   initializeFavorites,
   setUid,
 } from '../../redux/psychologists/favoriteReducer';
+import { AttentionForm } from 'components/AppointmentForm/AppointmentForm.styled';
+import { toast } from 'react-toastify';
 
 const IMAGE_BASE_URL = process.env.PUBLIC_URL + '/images';
 
@@ -60,9 +62,17 @@ export const Login = ({ onClose }) => {
         onClose();
       })
       .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        if (error.code === 'auth/wrong-password') {
+          toast.warn('Incorrect password');
+        } else if (error.code === 'auth/user-not-found') {
+          toast.warn('No user found with this email');
+        } else if (error.code === 'auth/invalid-email') {
+          toast.warn('Invalid email address');
+        } else if (error.code === 'auth/user-disabled') {
+          toast.warn('User account is disabled');
+        } else {
+          toast.warn('Login failed. Please try again.');
+        }
       });
   };
 
@@ -85,7 +95,9 @@ export const Login = ({ onClose }) => {
             type="email"
             placeholder="Email"
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && (
+            <AttentionForm>{errors.email.message}</AttentionForm>
+          )}
         </div>
         <PasswordBox>
           <Input
@@ -111,7 +123,9 @@ export const Login = ({ onClose }) => {
               />
             )}
           </EyeButton>
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <AttentionForm>{errors.password.message}</AttentionForm>
+          )}
         </PasswordBox>
         <ModalButton type="submit">Log in</ModalButton>
       </ModalForm>

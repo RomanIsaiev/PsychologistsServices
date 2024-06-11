@@ -11,6 +11,8 @@ export const TimePickerWrapper = styled.div`
     calc(9px + (18 - 9) * ((100vw - 375px) / (1440 - 375)));
   border-radius: 12px;
   border: 1px solid rgba(25, 26, 21, 0.1);
+
+  cursor: pointer;
 `;
 
 export const PickerContainer = styled.div`
@@ -20,7 +22,6 @@ export const PickerContainer = styled.div`
 `;
 
 export const PickerTitle = styled.div`
-  cursor: pointer;
   display: flex;
   align-items: center;
 `;

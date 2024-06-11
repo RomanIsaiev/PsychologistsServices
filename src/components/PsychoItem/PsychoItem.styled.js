@@ -168,6 +168,13 @@ export const ExpendedBtn = styled.button`
   background-color: inherit;
   border: none;
   padding: 0;
+
+  transition: color 250ms linear;
+
+  &:hover,
+  &:focus {
+    color: #fc832c;
+  }
 `;
 
 export const RatingPriceContainer = styled.div`
@@ -251,6 +258,13 @@ export const FavoriteBtn = styled.button`
   display: block;
   background: none;
   border: none;
+
+  transition: scale 250ms linear;
+
+  &:hover,
+  &:focus {
+    scale: 1.1;
+  }
 `;
 
 export const ReviewWrapper = styled.ul`
@@ -337,6 +351,13 @@ export const AppoBtn = styled.button`
 
   border-radius: 30px;
   background: #fc832c;
+
+  transition: background-color 250ms linear;
+
+  &:hover,
+  &:focus {
+    background-color: #f37113;
+  }
 
   @media screen and (min-width: 500px) {
     margin: 0 0;
